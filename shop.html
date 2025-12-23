@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shop - ELVT.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+body {
+  margin:0;
+  font-family:'Poppins', sans-serif;
+  background:#0a0a0a;
+  color:#f5f5f5;
+}
+
+nav {
+  position:fixed;
+  width:100%;
+  background:rgba(0,0,0,0.8);
+  padding:1em 0;
+  z-index:100;
+  backdrop-filter:blur(8px);
+}
+
+nav ul {
+  list-style:none;
+  display:flex;
+  justify-content:center;
+  gap:2.5em;
+  margin:0;
+  padding:0;
+}
+
+nav a {
+  color:#f5f5f5;
+  text-decoration:none;
+  font-weight:400;
+  letter-spacing:1px;
+  transition:color 0.3s;
+}
+
+nav a:hover {
+  color:#ff6347;
+}
+
+/* Mobile responsive navbar fix */
+@media (max-width: 768px) {
+  nav ul {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    justify-content: flex-start;
+    gap: 1.5em;
+    padding: 0 1em;
+  }
+
+  nav li {
+    flex: 0 0 auto;
+  }
+
+  nav a {
+    font-size: 0.9em;
+    white-space: nowrap;
+  }
+}
+
+.shop-container {
+  display:flex;
+  flex-wrap:wrap;
+  justify-content:center;
+  gap:2em;
+  padding:8em 2em 5em;
+}
+
+.shop-item {
+  width:260px;
+  background:#121212;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 4px 15px rgba(0,0,0,0.3);
+  transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.shop-item:hover {
+  transform:translateY(-5px);
+  box-shadow:0 6px 20px rgba(0,0,0,0.4);
+}
+
+.shop-item img {
+  width:100%;
+  height:320px;
+  object-fit:cover;
+}
+
+.shop-item p {
+  margin:0.8em 0;
+  font-size:1.1em;
+  font-weight:400;
+  text-align:center;
+}
+
+/* Remove blue underline and color from links */
+.shop-item a {
+  color:#f5f5f5;
+  text-decoration:none;
+  font-weight:400;
+  transition:color 0.3s;
+}
+
+.shop-item a:hover {
+  color:#ff6347;
+}
+
+footer {
+  text-align:center;
+  padding:2em;
+  background:#000;
+  color:#888;
+  font-size:0.9em;
+}
+</style>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">Philosophy</a></li>
+		<li><a href="index.html#merch">Merch</a></li>
+        <li><a href="index.html#gallery">Collection</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+		<li><a href="cart.html" class="cart-btn" aria-label="Cart">Cart</a></li>
+		
+    </ul>
+</nav>
+
+<section class="shop-container">
+    <div class="shop-item">
+        <a href="gender.html">
+            <img src="https://i.pinimg.com/1200x/c9/70/95/c97095b6a9edb367c4c92e0dc020e6de.jpg" alt="MERCH">
+            <p>MERCH</p>
+        </a>
+    </div>
+	<div class="shop-item">
+        <a href="elvtjerseys.html">
+            <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png" alt="MERCH">
+            <p>ELVT JERSEYS</p>
+        </a>
+    </div>
+	<div class="shop-item">
+        <a href="tracksuits.html">
+            <img src="https://i.pinimg.com/736x/e6/fa/64/e6fa648aec222720f1f29c0531075583.jpg" alt="Tracksuits">
+            <p>Tracksuits</p>
+        </a>
+    </div>
+	
+    <div class="shop-item">
+        <a href="soccer-retro-jerseys.html">
+            <img src="https://i.pinimg.com/1200x/ef/63/46/ef6346fccb46294d2ac502587fefc1e6.jpg" alt="Soccer Retro Jerseys">
+            <p>Soccer Retro Jerseys</p>
+        </a>
+    </div>
+
+    <div class="shop-item">
+        <a href="sportswear.html">
+            <img src="https://i.pinimg.com/736x/0c/83/01/0c83019c8165c7b89985f861876ea781.jpg" alt="Sportswear">
+            <p>Sportswear</p>
+        </a>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+</body>
+</html>

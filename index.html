@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ELVT. by Adam Hamed</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ===== Global Styles ===== */
+body { margin:0; font-family:'Poppins', sans-serif; background:#0a0a0a; color:#f5f5f5; scroll-behavior:smooth; }
+a { text-decoration:none; }
+button { font-family:inherit; }
+
+/* ===== Navbar ===== */
+nav { position:fixed; width:100%; background:rgba(0,0,0,0.8); padding:1em 0; z-index:100; backdrop-filter:blur(8px); overflow-x:auto; white-space:nowrap; }
+nav ul { list-style:none; display:flex; justify-content:center; gap:2.5em; margin:0; padding:0; flex-wrap:nowrap; }
+nav li { display:inline-block; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a:hover { color:#ff6347; }
+
+/* ===== Hero ===== */
+#hero { height:100vh; background:url('https://images.unsplash.com/photo-1520975918311-63c1ccdbb5eb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
+#hero::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(0,0,0,0.7), rgba(0,0,0,0.3)); }
+.hero-content { position:relative; z-index:1; animation:fadeIn 2s ease-in-out; }
+#hero h1 { font-family:'Playfair Display', serif; font-size:3.5em; font-weight:700; letter-spacing:2px; }
+#hero h1 .brand { font-style:italic; font-weight:300; font-size:0.6em; display:block; margin-top:0.5em; color:#cccccc; }
+.hero-tagline { margin-top:1em; font-size:1.3em; font-weight:300; color:#cccccc; animation:fadeUp 2s ease-in-out; }
+#hero .btn { margin-top:1.5em; padding:0.8em 1.8em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; letter-spacing:1px; transition: transform 0.3s, box-shadow 0.3s; }
+#hero .btn:hover { transform:scale(1.1); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+
+/* ===== About ===== */
+#about { padding:6em 2em; background:#0e0e0e; color:#f5f5f5; text-align:center; }
+.about-content { max-width:800px; margin:0 auto; animation:fadeUp 1.2s ease-in-out; }
+#about h2 { font-family:'Playfair Display', serif; font-size:2.2em; font-weight:700; text-transform:uppercase; margin-bottom:0.5em; }
+.highlight { color:#ff6347; }
+.divider { width:80px; height:3px; background:linear-gradient(to right,#ff6347,#b76e79); margin:0 auto 1.5em; border-radius:2px; }
+#about p { font-size:1.1em; line-height:1.8; color:#cccccc; font-weight:300; }
+
+/* ===== Gallery ===== */
+#gallery { padding:5em 2em; text-align:center; background:#121212; }
+#gallery h2 { font-family:'Playfair Display', serif; font-size:2em; font-weight:700; margin-bottom:0.5em; }
+.gallery-container { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5em; margin-top:2em; }
+.gallery-item { width:250px; height:250px; overflow:hidden; border-radius:10px; display:flex; align-items:center; justify-content:center; }
+.gallery-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s, filter 0.4s, box-shadow 0.3s; }
+.gallery-item:hover img { transform:scale(1.08) rotate(-1deg); filter:brightness(1); box-shadow:0 8px 20px rgba(0,0,0,0.5); }
+#gallery .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
+#gallery .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+
+/* ===== Merch Section (NEW) ===== */
+#merch { padding:5em 2em; text-align:center; background:#101010; }#merch {
+    padding:5em 2em;
+    text-align:center;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("images/merch-bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+#merch h2 { font-family:'Playfair Display', serif; font-size:2em; font-weight:700; margin-bottom:0.5em; }
+#merch .divider { width:80px; height:3px; background:linear-gradient(to right,#ff6347,#b76e79); margin:0 auto 1.5em; border-radius:2px; }
+.merch-container { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5em; margin-top:2em; }
+.merch-item { width:250px; height:250px; overflow:hidden; border-radius:10px; }
+.merch-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s, filter 0.4s; }
+.merch-item:hover img { transform:scale(1.08); filter:brightness(1.1); }
+#merch .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
+#merch .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+
+/* ===== Shop ===== */
+#shop {
+    padding:5em 2em;
+    text-align:center;
+    background:
+        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        url("images/merch-bg.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+#shop h2 { font-family:'Playfair Display', serif; font-size:2em; font-weight:700; margin-bottom:0.5em; }
+#shop .divider { width:80px; height:3px; background:linear-gradient(to right,#ff6347,#b76e79); margin:0 auto 1.5em; border-radius:2px; }
+#shop .shop-intro { color:#cccccc; font-weight:300; margin-bottom:2em; font-size:1.1em; }
+#shop .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
+#shop .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+
+/* ===== Contact ===== */
+#contact { padding:5em 2em; background:#0e0e0e; text-align:center; }
+.contact-info { max-width:400px; margin:0 auto 2em; font-size:1.05em; color:#cccccc; font-weight:300; line-height:1.6; }
+.contact-info a.highlight { color:#ff6347; text-decoration:none; transition:color 0.3s; }
+.contact-info a.highlight:hover { color:#b76e79; }
+#contact form { display:flex; flex-direction:column; gap:1em; max-width:400px; margin:0 auto; }
+#contact input, #contact textarea { padding:0.8em; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; transition:0.3s; }
+#contact input:focus, #contact textarea:focus { border-color:#ff6347; box-shadow:0 0 8px rgba(255,99,71,0.5); outline:none; }
+#contact button { padding:1em; border:none; background:#ff6347; color:white; cursor:pointer; font-weight:500; transition: transform 0.3s; }
+#contact button:hover { transform:scale(1.05); }
+.success-message { display:none; color:#ff6347; margin-top:0.5em; font-weight:500; opacity:0; transition:opacity 0.5s ease-in-out; }
+.success-message.show { display:block; opacity:1; }
+
+/* ===== Footer ===== */
+footer { text-align:center; padding:2em; background:#000; color:#888; font-size:0.9em; }
+footer .social-icons { display:flex; justify-content:center; gap:1em; margin-bottom:1em; }
+footer .social-icons a svg { width:24px; height:24px; fill:#fff; transition: transform 0.3s, fill 0.3s; }
+footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
+
+/* ===== Animations ===== */
+@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+@keyframes fadeUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
+
+/* ===== Responsive ===== */
+@media(max-width:768px) {
+    nav ul {
+        justify-content:flex-start;
+        gap:1.5em;
+        padding:0 1em;
+        overflow-x:auto;
+        white-space:nowrap;
+    }
+    #hero h1 { font-size:2.5em; }
+    .hero-tagline { font-size:1em; }
+    .gallery-item { width:180px; height:180px; }
+}
+</style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav>
+    <ul>
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#about">Philosophy</a></li>
+        <li><a href="#merch">Merch</a></li>
+		<li><a href="#gallery">Collection</a></li>
+        <li><a href="#shop">Shop</a></li>
+        <li><a href="#contact">Contact</a></li>
+		<li><a href="cart.html" class="cart-btn" aria-label="Cart">Cart</a></li>
+
+    </ul>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+    <div class="hero-content">
+        <h1>ELVT. <span class="brand">by Adam Hamed</span></h1>
+        <p class="hero-tagline">Elevate your wardrobe</p>
+        <a href="https://www.instagram.com/elvt.by.adam/" target="_blank" class="btn">Discover More</a>
+    </div>
+</section>
+
+<!-- About -->
+<section id="about">
+    <div class="about-content">
+        <h2>The Philosophy Behind <span class="highlight">ELVT.</span></h2>
+        <div class="divider"></div>
+        <p>
+            <strong>ELVT. by Adam Hamed</strong> curates a refined selection of clothing. 
+            Each piece is chosen for its craftsmanship, versatility, and style, forming a collection that redefines how modern fashion is experienced.
+        </p>
+    </div>
+</section>
+
+<!-- MERCH (NEW SECTION) -->
+<section id="merch">
+    <h2>Merch</h2>
+    <div class="divider"></div>
+    <div class="merch-container">
+        <div class="merch-item">
+            <img src="https://i.pinimg.com/1200x/e7/c2/ac/e7c2ac321fbe9112030155e2ee24288d.jpg" alt="Merch 1">
+        </div>
+		<div class="merch-item">
+            <img src="https://i.pinimg.com/736x/77/1a/d0/771ad09677210dc64edec0927f495727.jpg" alt="Merch 2">
+        </div>
+		
+    </div>
+	<a href="gender.html" class="btn" style="margin-top:2em; display:inline-block;">View Merch</a>
+
+</section>
+
+<!-- Gallery -->
+<section id="gallery">
+    <h2>The Collection</h2>
+    <div class="divider"></div>
+    <div class="gallery-container">
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/1a/4c/d2/1a4cd20d7cbb4a72600ab58ade60572a.jpg" alt="Gallery 1" loading="lazy">
+        </div>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/1200x/de/79/4c/de794cd1c7a96b42475103f92f4cecbb.jpg" alt="Gallery 3" loading="lazy">
+        </div>
+        <div class="gallery-item">
+            <img src="https://i.pinimg.com/736x/e1/79/eb/e179eb8ff5af8f7935d9260fed9ebc77.jpg" alt="Gallery 4" loading="lazy">
+        </div>
+    </div>
+	<a href="tracksuits.html" class="btn" style="margin-top:2em; display:inline-block;">View Collection</a>
+
+</section>
+
+<!-- Shop -->
+<section id="shop">
+    <h2>Shop</h2>
+    <div class="divider"></div>
+    <p class="shop-intro">Explore our collection and elevate your style. Click below to view all available pieces.</p>
+    <a href="shop.html" class="btn">Visit Shop</a>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="divider"></div>
+    
+    <div class="contact-info">
+        <p>Email: <a href="mailto:elvtbyadam@outlook.com" class="highlight">elvtbyadam@outlook.com</a></p>
+        <p>Phone: <a href="tel:+13133751335" class="highlight">+1 (313) 375-1335</a></p>
+    </div>
+
+    <form id="contact-form" action="https://formspree.io/f/xzzyzval" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" placeholder="Your Message" required></textarea>
+        <button type="submit">Send</button>
+        <p class="success-message">Thank you! Your message has been sent.</p>
+    </form>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/elvt.by.adam/" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.432.403a4.92 4.92 0 0 1 1.773 1.024 4.92 4.92 0 0 1 1.024 1.774c.164.462.347 1.262.403 2.432.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.432a4.92 4.92 0 0 1-1.024 1.773 4.92 4.92 0 0 1-1.774 1.024c-.462.164-1.262.347-2.432.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.432-.403a4.92 4.92 0 0 1-1.773-1.024 4.92 4.92 0 0 1-1.024-1.774c-.164-.462-.347-1.262-.403-2.432C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.432a4.92 4.92 0 0 1 1.024-1.773 4.92 4.92 0 0 1 1.774-1.024c.462-.164 1.262-.347 2.432-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.012 7.052.07 5.773.127 4.818.34 4.065.63a6.92 6.92 0 0 0-2.5 1.605A6.92 6.92 0 0 0 .63 4.065c-.29.753-.503 1.708-.56 2.987C0 8.332 0 8.736 0 12s.012 3.668.07 4.948c.057 1.279.27 2.234.56 2.987a6.92 6.92 0 0 0 1.605 2.5 6.92 6.92 0 0 0 2.5 1.605c.753.29 1.708.503 2.987.56C8.332 24 8.736 24 12 24s3.668-.012 4.948-.07c1.279-.057 2.234-.27 2.987-.56a6.92 6.92 0 0 0 2.5-1.605 6.92 6.92 0 0 0 1.605-2.5c.29-.753.503-1.708.56-2.987.058-1.28.07-1.684.07-4.948s-.012-3.668-.07-4.948c-.057-1.279-.27-2.234-.56-2.987a6.92 6.92 0 0 0-1.605-2.5 6.92 6.92 0 0 0-2.5-1.605c-.753-.29-1.708-.503-2.987-.56C15.668.012 15.264 0 12 0z"/>
+                <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+                <circle cx="18.406" cy="5.594" r="1.44"/>
+            </svg>
+        </a>
+    </div>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+
+<script>
+<script>
+// Smooth scroll only for anchors starting with #
+document.querySelectorAll('nav a[href^="#"]').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(link.getAttribute('href'));
+        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+});
+</script>
+
+
+</body>
+</html>

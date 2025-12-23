@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Casual - ELVT.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.shop-container { display:flex; flex-wrap:wrap; justify-content:center; gap:2em; padding:6em 2em 4em; }
+.shop-item { width:260px; background:#121212; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s, box-shadow 0.3s; }
+.shop-item:hover { transform:translateY(-5px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+
+.image-row {
+    display:flex;
+    gap:0.5em;
+    overflow-x:auto;
+    padding:0.5em;
+}
+
+.image-row img {
+    width:80px;
+    height:100px;
+    object-fit:cover;
+    border-radius:6px;
+}
+
+.shop-item p { margin:0.8em 0; font-size:1.1em; font-weight:400; text-align:center; }
+.size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
+.size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
+.size-options button:hover { background:#ff6347; border-color:#ff6347; }
+</style>
+</head>
+<body>
+
+<nav>
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="index.html#about">Philosophy</a></li>
+        <li><a href="index.html#gallery">Collection</a></li>
+        <li><a href="shop.html">Shop</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+</nav>
+
+<section class="shop-container">
+
+    <div class="shop-item">
+
+        <div class="image-row">
+            <img src="https://i.pinimg.com/1200x/ed/34/71/ed34710baff753d94a1129d7fa750299.jpg" alt="T-Shirt Color 1">
+            <img src="https://i.pinimg.com/736x/18/50/dd/1850dd67b4bdf10dc22736d6bc969c1c.jpg" alt="T-Shirt Color 2">
+            <img src="https://i.pinimg.com/1200x/dc/10/04/dc1004213265d9fb694ebe0d5ac88f26.jpg" alt="T-Shirt Color 3">
+			<img src="https://i.pinimg.com/1200x/c9/24/52/c92452f990eb7f053baff6f360b4e6ef.jpg" alt="T-Shirt Color 4">
+			<img src="https://i.pinimg.com/736x/ed/e8/19/ede81975be76338629f13e88f64d5d66.jpg" alt="T-Shirt Color 5">
+			<img src="https://i.pinimg.com/1200x/18/45/01/184501eb3b3228d7fff753cd9386ba97.jpg" alt="T-Shirt Color 6">
+        </div>
+
+        <p>RALPH LAUREN POLO</p>
+
+        <div class="size-options">
+            <button>S</button>
+            <button>M</button>
+            <button>L</button>
+            <button>XL</button>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+
+</body>
+</html>

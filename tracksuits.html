@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Coming Soon | ELVT</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+    body {
+        margin:0;
+        font-family:'Poppins', sans-serif;
+        background:#0a0a0a;
+        color:#f5f5f5;
+        scroll-behavior:smooth;
+        height:100vh;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+    }
+
+    .coming-container {
+        animation:fadeIn 2s ease-in-out;
+    }
+
+    h1 {
+        font-family:'Playfair Display', serif;
+        font-size:4em;
+        font-weight:700;
+        letter-spacing:4px;
+        color:#f5f5f5;
+    }
+
+    .accent {
+        color:#ff6347;
+    }
+
+    @keyframes fadeIn {
+        from {opacity:0;}
+        to {opacity:1;}
+    }
+
+    @media(max-width:768px) {
+        h1 { font-size:2.6em; letter-spacing:2px; }
+    }
+</style>
+</head>
+<body>
+
+<div class="coming-container">
+    <h1>COMING <span class="accent">SOON</span></h1>
+</div>
+
+</body>
+</html>
