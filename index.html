@@ -130,7 +130,7 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
   <div class="nav-container">
     <div class="logo"><a href="#hero">ELVT.</a></div>
 
-    <!-- Hamburger (mobile only) -->
+    <!-- Hamburger -->
     <div id="hamburger" class="hamburger">
       <span></span>
       <span></span>
@@ -150,38 +150,81 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 </nav>
 
 <style>
-/* Navbar basic */
-nav { width:100%; background: rgba(0,0,0,0.8); position:fixed; top:0; left:0; z-index:100; backdrop-filter:blur(8px); }
-.nav-container { display:flex; justify-content:space-between; align-items:center; padding:1em 2em; }
+nav {
+  width: 100%;
+  background: rgba(0,0,0,0.8);
+  position: fixed;
+  top:0;
+  left:0;
+  z-index:100;
+  backdrop-filter: blur(8px);
+}
+.nav-container {
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:1em 2em;
+}
 .logo a { color:#fff; font-weight:600; text-decoration:none; }
 
 /* Menu Links */
-.nav-links { list-style:none; display:flex; gap:2em; margin:0; padding:0; }
-.nav-links li a { color:#fff; text-decoration:none; font-weight:400; transition: color 0.3s; }
+.nav-links {
+  list-style:none;
+  display:flex;
+  gap:2em;
+  margin:0;
+  padding:0;
+}
+.nav-links li a {
+  color:#fff;
+  text-decoration:none;
+  font-weight:400;
+  transition: color 0.3s;
+}
 .nav-links li a:hover { color:#ff6347; }
 
 /* Hamburger */
-.hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; }
-.hamburger span { width:25px; height:3px; background:#fff; border-radius:2px; transition: all 0.3s; }
-.hamburger.active span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+.hamburger {
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+}
+.hamburger span {
+  width:25px;
+  height:3px;
+  background:#fff;
+  border-radius:2px;
+  transition: all 0.3s;
+}
+.hamburger.active span:nth-child(1) {
+  transform:rotate(45deg) translate(5px,5px);
+}
 .hamburger.active span:nth-child(2) { opacity:0; }
-.hamburger.active span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+.hamburger.active span:nth-child(3) {
+  transform:rotate(-45deg) translate(5px,-5px);
+}
 
-/* Mobile only */
+/* Mobile */
 @media(max-width:768px) {
   .hamburger { display:flex; }
-  .nav-links { 
-    flex-direction:column; 
-    display:none; 
-    width:100%; 
-    background:rgba(0,0,0,0.95); 
-    position:absolute; 
-    top:100%; 
-    left:0; 
-    padding:1em 0; 
-    text-align:center; 
+
+  .nav-links {
+    flex-direction:column;
+    display:none; /* hidden by default */
+    width:100%;
+    background:rgba(0,0,0,0.95);
+    position:absolute;
+    top:100%;
+    left:0;
+    padding:1em 0;
+    text-align:center;
   }
-  .nav-links.show { display:flex; }
+
+  .nav-links.show {
+    display:flex;
+  }
+
   .nav-links li { margin:1em 0; }
 }
 </style>
@@ -191,10 +234,11 @@ const hamburger = document.getElementById('hamburger');
 const navMenu = document.getElementById('nav-menu');
 
 hamburger.addEventListener('click', () => {
-  navMenu.classList.toggle('show');
-  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('show');  // This actually shows/hides the menu
+  hamburger.classList.toggle('active'); // This animates hamburger -> X
 });
 </script>
+
 
 
 <!-- Hero -->
