@@ -188,15 +188,17 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 </style>
 
 <script>
-// Hamburger toggle
-const hamburger = document.getElementById('hamburger');
-const navMenu = document.getElementById('nav-menu');
+document.addEventListener('DOMContentLoaded', () => {
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
 
-hamburger.addEventListener('click', () => {
-    navMenu.classList.toggle('show');
-    hamburger.classList.toggle('active');
+    hamburger.addEventListener('click', () => {
+        navMenu.classList.toggle('show');
+        hamburger.classList.toggle('active');
+    });
 });
 </script>
+
 
 <!-- Hero -->
 <section id="hero">
