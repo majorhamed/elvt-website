@@ -15,6 +15,10 @@
 .size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
 .size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
 .size-options button:hover { background:#ff6347; border-color:#ff6347; }
+.size-options button.active {
+    background: #ff6347;
+    border-color: #ff6347;
+}
 </style>
 </head>
 <body>
@@ -36,9 +40,31 @@
     <div class="shop-item">
         <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
         <p>ELVT Retro Jersey Lebanon</p>
-        <div class="size-options">
-            <button>S</button><button>M</button><button>L</button><button>XL</button>
-        </div>
+        <p>$</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Retro Jersey Lebanon',
+        75,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
     </div>
 	
 	    <!-- Add more items as needed -->
@@ -47,6 +73,46 @@
 <footer>
     <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
 </footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
+    document.querySelectorAll('.shop-item').forEach(item => {
+        const sizeButtons = item.querySelectorAll('.size-options button');
+
+        sizeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Clear active only for this product
+                sizeButtons.forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+                item.dataset.size = btn.innerText;
+            });
+        });
+    });
+
+});
+
+function addToCart(name, price, image, item) {
+    const size = item.dataset.size;
+
+    if (!size) {
+        alert("Please select a size");
+        return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    cart.push({
+        name,
+        price,
+        image,
+        size,
+        qty: 1
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    alert("Added to cart");
+}
+</script>
 </body>
 </html>

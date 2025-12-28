@@ -2,57 +2,187 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Coming Soon | ELVT</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<!-- Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-
+<title>Cart | ELVT.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
-    body {
-        margin:0;
-        font-family:'Poppins', sans-serif;
-        background:#0a0a0a;
-        color:#f5f5f5;
-        scroll-behavior:smooth;
-        height:100vh;
-        display:flex;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-    }
+/* ===== Global Styles ===== */
+html, body {
+    height: 100%;
+    margin: 0;
+}
+body {
+    display: flex;
+    flex-direction: column;
+    font-family: 'Poppins', sans-serif;
+    background: #0a0a0a;
+    color: #f5f5f5;
+    scroll-behavior: smooth;
+}
 
-    .coming-container {
-        animation:fadeIn 2s ease-in-out;
-    }
+/* ===== Navbar ===== */
+nav {
+    position: fixed;
+    top:0;
+    left:0;
+    width:100%;
+    background: rgba(0,0,0,0.8);
+    padding: 1em 0;
+    z-index:100;
+    backdrop-filter: blur(8px);
+    overflow-x:auto;
+    white-space:nowrap;
+}
+nav ul {
+    list-style:none;
+    display:flex;
+    justify-content:center;
+    gap:2.5em;
+    margin:0;
+    padding:0;
+    flex-wrap:nowrap;
+}
+nav li { display:inline-block; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a:hover { color:#ff6347; }
+nav a {
+    color: #f5f5f5;
+    font-weight: 400;
+    letter-spacing: 1px;
+    transition: color 0.3s;
+    text-decoration: none; /* add this */
+}
 
-    h1 {
-        font-family:'Playfair Display', serif;
-        font-size:4em;
-        font-weight:700;
-        letter-spacing:4px;
-        color:#f5f5f5;
-    }
 
-    .accent {
-        color:#ff6347;
-    }
+/* ===== Cart Styles ===== */
+.cart-container {
+    flex: 1; /* makes the content take remaining space */
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 120px 20px 60px 20px; /* top padding to clear navbar */
+}
+h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; margin-bottom:30px; text-align:center; }
 
-    @keyframes fadeIn {
-        from {opacity:0;}
-        to {opacity:1;}
-    }
+.cart-item { display:flex; gap:20px; align-items:center; padding:20px 0; border-bottom:1px solid #333; }
+.cart-item img { width:90px; border-radius:8px; }
+.cart-details { flex:1; }
+.cart-details h3 { font-weight:500; margin-bottom:5px; }
+.cart-details p { font-size:14px; opacity:.8; }
+.cart-actions { text-align:right; }
+.remove-btn { background:#b00000; color:#fff; border:none; padding:8px 14px; cursor:pointer; border-radius:4px; transition:0.3s; }
+.remove-btn:hover { background:#ff3b3b; }
 
-    @media(max-width:768px) {
-        h1 { font-size:2.6em; letter-spacing:2px; }
-    }
+.total { text-align:right; font-size:22px; margin-top:30px; }
+.checkout-btn { margin-top:20px; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; padding:14px 30px; border:none; font-weight:600; display:block; margin-left:auto; border-radius:5px; transition: transform 0.3s; }
+.checkout-btn:hover { transform:scale(1.05); }
+
+.empty { text-align:center; opacity:.6; margin-top:60px; font-size:1.2em; }
+
+/* ===== Footer ===== */
+footer {
+    text-align:center;
+    padding:2em;
+    background:#000;
+    color:#888;
+    font-size:0.9em;
+}
+footer .social-icons { display:flex; justify-content:center; gap:1em; margin-bottom:1em; }
+footer .social-icons a svg { width:24px; height:24px; fill:#fff; transition: transform 0.3s, fill 0.3s; }
+footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
+
+/* ===== Responsive ===== */
+@media(max-width:768px) {
+    nav ul { justify-content:flex-start; gap:1.5em; padding:0 1em; overflow-x:auto; white-space:nowrap; }
+    .cart-item { flex-direction:column; align-items:flex-start; }
+    .cart-actions { width:100%; text-align:left; margin-top:10px; }
+}
 </style>
 </head>
 <body>
 
-<div class="coming-container">
-    <h1>COMING <span class="accent">SOON</span></h1>
+<!-- Navbar -->
+<nav>
+    <ul>
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#about">Philosophy</a></li>
+        <li><a href="index.html#merch">Merch</a></li>
+        <li><a href="index.html#gallery">Collection</a></li>
+        <li><a href="index.html#shop">Shop</a></li>
+        <li><a href="index.html#contact">Contact</a></li>
+        <li><a href="cart.html" class="cart-btn">Cart</a></li>
+    </ul>
+</nav>
+
+<!-- Cart Section -->
+<div class="cart-container">
+    <h1>Your Cart</h1>
+    <div id="cart-items"></div>
+    <div class="total" id="cart-total"></div>
+    <button class="checkout-btn" onclick="checkout()">Send To Adam</button>
 </div>
 
+<!-- Footer -->
+<footer>
+    <div class="social-icons">
+        <a href="https://www.instagram.com/elvt.by.adam/" target="_blank" aria-label="Instagram" rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.17.056 1.97.24 2.432.403a4.92 4.92 0 0 1 1.773 1.024 4.92 4.92 0 0 1 1.024 1.774c.164.462.347 1.262.403 2.432.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.056 1.17-.24 1.97-.403 2.432a4.92 4.92 0 0 1-1.024 1.773 4.92 4.92 0 0 1-1.774 1.024c-.462.164-1.262.347-2.432.403-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.17-.056-1.97-.24-2.432-.403a4.92 4.92 0 0 1-1.773-1.024 4.92 4.92 0 0 1-1.024-1.774c-.164-.462-.347-1.262-.403-2.432C2.175 15.747 2.163 15.367 2.163 12s.012-3.584.07-4.85c.056-1.17.24-1.97.403-2.432a4.92 4.92 0 0 1 1.024-1.773 4.92 4.92 0 0 1 1.774-1.024c.462-.164 1.262-.347 2.432-.403C8.416 2.175 8.796 2.163 12 2.163zm0-2.163C8.736 0 8.332.012 7.052.07 5.773.127 4.818.34 4.065.63a6.92 6.92 0 0 0-2.5 1.605A6.92 6.92 0 0 0 .63 4.065c-.29.753-.503 1.708-.56 2.987C0 8.332 0 8.736 0 12s.012 3.668.07 4.948c.057 1.279.27 2.234.56 2.987a6.92 6.92 0 0 0 1.605 2.5 6.92 6.92 0 0 0 2.5 1.605c.753.29 1.708.503 2.987.56C8.332 24 8.736 24 12 24s3.668-.012 4.948-.07c1.279-.057 2.234-.27 2.987-.56a6.92 6.92 0 0 0 2.5-1.605 6.92 6.92 0 0 0 1.605-2.5c.29-.753.503-1.708.56-2.987.058-1.28.07-1.684.07-4.948s-.012-3.668-.07-4.948c-.057-1.279-.27-2.234-.56-2.987a6.92 6.92 0 0 0-1.605-2.5 6.92 6.92 0 0 0-2.5-1.605c-.753-.29-1.708-.503-2.987-.56C15.668.012 15.264 0 12 0z"/>
+                <path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a3.999 3.999 0 1 1 0-7.998 3.999 3.999 0 0 1 0 7.998z"/>
+                <circle cx="18.406" cy="5.594" r="1.44"/>
+            </svg>
+        </a>
+    </div>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+
+<script>
+// Cart logic
+let cart = JSON.parse(localStorage.getItem('cart')) || [];
+const cartItems = document.getElementById('cart-items');
+const cartTotal = document.getElementById('cart-total');
+
+function renderCart() {
+    cartItems.innerHTML = "";
+    let total = 0;
+
+    if(cart.length === 0){
+        cartItems.innerHTML = `<p class="empty">Your cart is empty</p>`;
+        cartTotal.style.display = "none";
+        document.querySelector('.checkout-btn').style.display = "none";
+        return;
+    }
+
+    cart.forEach((item, index) => {
+        total += item.price * item.qty;
+        cartItems.innerHTML += `
+            <div class="cart-item">
+                <img src="${item.image}" alt="${item.name}">
+                <div class="cart-details">
+                    <h3>${item.name}</h3>
+                    <p>Size: ${item.size}</p>
+                    <p>$${item.price.toFixed(2)}</p>
+                </div>
+                <div class="cart-actions">
+                    <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
+                </div>
+            </div>
+        `;
+    });
+
+    cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
+}
+
+function removeItem(index){
+    cart.splice(index,1);
+    localStorage.setItem('cart', JSON.stringify(cart));
+    renderCart();
+}
+
+function checkout(){
+    alert("Checkout system coming soon");
+}
+
+renderCart();
+</script>
 </body>
 </html>
