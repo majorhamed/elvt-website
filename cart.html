@@ -6,61 +6,16 @@
 <title>Cart | ELVT.</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
 <style>
-/* ===== Global Styles ===== */
-html, body {
-    height: 100%;
-    margin: 0;
-}
-body {
-    display: flex;
-    flex-direction: column;
-    font-family: 'Poppins', sans-serif;
-    background: #0a0a0a;
-    color: #f5f5f5;
-    scroll-behavior: smooth;
-}
+html, body { height: 100%; margin: 0; }
+body { display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #f5f5f5; scroll-behavior: smooth; }
 
-/* ===== Navbar ===== */
-nav {
-    position: fixed;
-    top:0;
-    left:0;
-    width:100%;
-    background: rgba(0,0,0,0.8);
-    padding: 1em 0;
-    z-index:100;
-    backdrop-filter: blur(8px);
-    overflow-x:auto;
-    white-space:nowrap;
-}
-nav ul {
-    list-style:none;
-    display:flex;
-    justify-content:center;
-    gap:2.5em;
-    margin:0;
-    padding:0;
-    flex-wrap:nowrap;
-}
+nav { position: fixed; top:0; left:0; width:100%; background: rgba(0,0,0,0.8); padding: 1em 0; z-index:100; backdrop-filter: blur(8px); overflow-x:auto; white-space:nowrap; }
+nav ul { list-style:none; display:flex; justify-content:center; gap:2.5em; margin:0; padding:0; flex-wrap:nowrap; }
 nav li { display:inline-block; }
-nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; text-decoration:none; }
 nav a:hover { color:#ff6347; }
-nav a {
-    color: #f5f5f5;
-    font-weight: 400;
-    letter-spacing: 1px;
-    transition: color 0.3s;
-    text-decoration: none; /* add this */
-}
 
-
-/* ===== Cart Styles ===== */
-.cart-container {
-    flex: 1; /* makes the content take remaining space */
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 120px 20px 60px 20px; /* top padding to clear navbar */
-}
+.cart-container { flex: 1; max-width: 900px; margin: 0 auto; padding: 120px 20px 60px 20px; }
 h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; margin-bottom:30px; text-align:center; }
 
 .cart-item { display:flex; gap:20px; align-items:center; padding:20px 0; border-bottom:1px solid #333; }
@@ -73,24 +28,23 @@ h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; ma
 .remove-btn:hover { background:#ff3b3b; }
 
 .total { text-align:right; font-size:22px; margin-top:30px; }
-.checkout-btn { margin-top:20px; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; padding:14px 30px; border:none; font-weight:600; display:block; margin-left:auto; border-radius:5px; transition: transform 0.3s; }
-.checkout-btn:hover { transform:scale(1.05); }
+
+#order-form { display:flex; flex-direction:column; gap:1em; max-width:400px; margin:2em auto; }
+#order-form input, #order-form textarea { padding:0.8em; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; transition:0.3s; }
+#order-form input:focus, #order-form textarea:focus { border-color:#ff6347; box-shadow:0 0 8px rgba(255,99,71,0.5); outline:none; }
+#order-form button { padding:1em; border:none; background:#ff6347; color:white; cursor:pointer; font-weight:500; transition: transform 0.3s; }
+#order-form button:hover { transform:scale(1.05); }
+
+.success-message { display:none; color:#ff6347; margin-top:0.5em; font-weight:500; opacity:0; transition:opacity 0.5s ease-in-out; text-align:center; font-size:1.1em; }
+.success-message.show { display:block; opacity:1; }
 
 .empty { text-align:center; opacity:.6; margin-top:60px; font-size:1.2em; }
 
-/* ===== Footer ===== */
-footer {
-    text-align:center;
-    padding:2em;
-    background:#000;
-    color:#888;
-    font-size:0.9em;
-}
+footer { text-align:center; padding:2em; background:#000; color:#888; font-size:0.9em; }
 footer .social-icons { display:flex; justify-content:center; gap:1em; margin-bottom:1em; }
 footer .social-icons a svg { width:24px; height:24px; fill:#fff; transition: transform 0.3s, fill 0.3s; }
 footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 
-/* ===== Responsive ===== */
 @media(max-width:768px) {
     nav ul { justify-content:flex-start; gap:1.5em; padding:0 1em; overflow-x:auto; white-space:nowrap; }
     .cart-item { flex-direction:column; align-items:flex-start; }
@@ -118,7 +72,25 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     <h1>Your Cart</h1>
     <div id="cart-items"></div>
     <div class="total" id="cart-total"></div>
-    <button class="checkout-btn" onclick="checkout()">Send To Adam</button>
+
+    <!-- Order Form -->
+    <form id="order-form" action="https://formspree.io/f/xzzyzval" method="POST">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="tel" name="phone" placeholder="Your Phone Number" required>
+        <input type="email" name="email" placeholder="Your Email (optional)">
+        <input type="text" name="address" placeholder="Street Address" required>
+        <input type="text" name="city" placeholder="City" required>
+        <input type="text" name="zip" placeholder="ZIP / Postal Code" required>
+        <input type="text" name="country" placeholder="Country" required>
+        <textarea name="notes" placeholder="Additional notes or instructions"></textarea>
+        <input type="hidden" name="_subject" value="New ELVT Order">
+        <input type="hidden" name="_replyto" value="elvtbyadam@outlook.com">
+        <input type="hidden" name="cartDetails" id="cartDetails">
+        <button type="submit">Send Order</button>
+    </form>
+
+    <!-- Success Message (outside form so it stays visible) -->
+    <p id="order-success" class="success-message">Your order was sent successfully! We will contact you shortly. Thank you!</p>
 </div>
 
 <!-- Footer -->
@@ -136,7 +108,6 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 </footer>
 
 <script>
-// Cart logic
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
@@ -148,7 +119,7 @@ function renderCart() {
     if(cart.length === 0){
         cartItems.innerHTML = `<p class="empty">Your cart is empty</p>`;
         cartTotal.style.display = "none";
-        document.querySelector('.checkout-btn').style.display = "none";
+        document.querySelector('#order-form button').style.display = "none";
         return;
     }
 
@@ -160,7 +131,8 @@ function renderCart() {
                 <div class="cart-details">
                     <h3>${item.name}</h3>
                     <p>Size: ${item.size}</p>
-                    <p>$${item.price.toFixed(2)}</p>
+                    <p>Qty: ${item.qty}</p>
+                    <p>$${(item.price * item.qty).toFixed(2)}</p>
                 </div>
                 <div class="cart-actions">
                     <button class="remove-btn" onclick="removeItem(${index})">Remove</button>
@@ -169,6 +141,7 @@ function renderCart() {
         `;
     });
 
+    cartTotal.style.display = "block";
     cartTotal.innerHTML = `Total: $${total.toFixed(2)}`;
 }
 
@@ -178,11 +151,49 @@ function removeItem(index){
     renderCart();
 }
 
-function checkout(){
-    alert("Checkout system coming soon");
-}
-
 renderCart();
+
+const form = document.getElementById('order-form');
+const successMsg = document.getElementById('order-success');
+const cartDetailsInput = document.getElementById('cartDetails');
+
+form.addEventListener('submit', function(event){
+    event.preventDefault();
+
+    if(cart.length === 0){
+        alert('Your cart is empty.');
+        return;
+    }
+
+    let cartText = cart.map(item => 
+        `${item.name} | Size: ${item.size} | Qty: ${item.qty} | $${(item.price*item.qty).toFixed(2)}`
+    ).join("\n");
+
+    cartDetailsInput.value = cartText;
+
+    const formData = new FormData(form);
+
+    fetch(form.action, {
+        method: form.method,
+        body: formData,
+        headers: { 'Accept': 'application/json' }
+    })
+    .then(response => {
+        if(response.ok){
+            successMsg.classList.add('show'); // show success message
+            cart = []; // clear in-memory cart
+            localStorage.removeItem('cart'); // clear storage
+            renderCart(); // update cart display
+            form.style.display = 'none'; // hide form
+        } else {
+            alert('Error sending order.');
+        }
+    })
+    .catch(error => {
+        alert('Error sending order: ' + error);
+    });
+});
 </script>
+
 </body>
 </html>
