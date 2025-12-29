@@ -9,11 +9,79 @@
 html, body { height: 100%; margin: 0; }
 body { display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #f5f5f5; scroll-behavior: smooth; }
 
-nav { position: fixed; top:0; left:0; width:100%; background: rgba(0,0,0,0.8); padding: 1em 0; z-index:100; backdrop-filter: blur(8px); overflow-x:auto; white-space:nowrap; }
-nav ul { list-style:none; display:flex; justify-content:center; gap:2.5em; margin:0; padding:0; flex-wrap:nowrap; }
+/* Navbar base */
+nav {
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.85);
+    padding:1em 1.5em;
+    z-index:100;
+    backdrop-filter:blur(8px);
+}
+
+.nav-inner {
+    display:flex;
+    align-items:center;
+    justify-content:center; /* desktop centered */
+    max-width:1200px;
+    margin:0 auto;
+}
+
+nav ul {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2em;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
 nav li { display:inline-block; }
-nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; text-decoration:none; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
 nav a:hover { color:#ff6347; }
+
+.menu-toggle {
+    display:none;
+    font-size:1.8em;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* Mobile responsive */
+@media (max-width:768px) {
+    .menu-toggle {
+        display:block;
+    }
+
+    .nav-inner {
+        justify-content:space-between; /* mobile layout */
+    }
+
+    nav ul {
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#000;
+        flex-direction:column;
+        align-items:center;
+        gap:1.5em;
+        padding:1.5em 0;
+        display:none;
+    }
+
+    nav ul.active {
+        display:flex;
+    }
+}
+nav a {
+    text-decoration: none;  /* remove underline */
+    color: #f5f5f5;
+}
+
+
 
 .cart-container { flex: 1; max-width: 900px; margin: 0 auto; padding: 120px 20px 60px 20px; }
 h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; margin-bottom:30px; text-align:center; }
@@ -56,16 +124,21 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 
 <!-- Navbar -->
 <nav>
-    <ul>
-        <li><a href="index.html#hero">Home</a></li>
-        <li><a href="index.html#about">Philosophy</a></li>
-        <li><a href="index.html#merch">Merch</a></li>
-        <li><a href="index.html#gallery">Collection</a></li>
-        <li><a href="index.html#shop">Shop</a></li>
-        <li><a href="index.html#contact">Contact</a></li>
-        <li><a href="cart.html" class="cart-btn">Cart</a></li>
+  <div class="nav-inner">
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <ul id="navMenu">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">Philosophy</a></li>
+      <li><a href="merch.html#merch">Merch</a></li>
+      <li><a href="index.html#gallery">Collection</a></li>
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="cart.html">Cart</a></li>
     </ul>
+  </div>
 </nav>
+
 
 <!-- Cart Section -->
 <div class="cart-container">
@@ -194,6 +267,16 @@ form.addEventListener('submit', function(event){
     });
 });
 </script>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+
 
 </body>
 </html>
