@@ -25,12 +25,10 @@ nav {
 .nav-inner {
     display:flex;
     align-items:center;
-    justify-content:space-between;
-    max-width:1200px;
-    margin:0 auto;
+    justify-content:center; /* DESKTOP CENTER */
 }
 
-nav ul { list-style:none; display:flex; justify-content:center; gap:2.5em; margin:0; padding:0; flex-wrap:nowrap; }
+
 nav li { display:inline-block; }
 nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
 nav a:hover { color:#ff6347; }
@@ -42,6 +40,24 @@ nav a:hover { color:#ff6347; }
 }
 section {
     scroll-margin-top:90px;
+}
+nav ul {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2.7em;
+    list-style:none;
+    margin:0 auto;
+    padding:0;
+	flex-wrap:nowrap;
+}
+.nav-inner {
+    position:relative;
+}
+
+.menu-toggle {
+    position:absolute;
+    left:0;
 }
 
 
