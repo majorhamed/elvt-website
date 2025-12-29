@@ -40,6 +40,10 @@ nav a:hover { color:#ff6347; }
     cursor:pointer;
     user-select:none;
 }
+section {
+    scroll-margin-top:90px;
+}
+
 
 
 /* ===== Hero ===== */
@@ -275,16 +279,35 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 </footer>
 
 <script>
-<script>
-// Smooth scroll only for anchors starting with #
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("navMenu");
+
+/* Toggle menu */
+toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
+});
+
+/* Close menu after clicking a link (mobile) */
+menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menu.classList.remove("active");
+        toggle.textContent = "☰";
+    });
+});
+
+/* Smooth scroll */
 document.querySelectorAll('nav a[href^="#"]').forEach(link => {
     link.addEventListener('click', e => {
         e.preventDefault();
         const target = document.querySelector(link.getAttribute('href'));
-        if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
     });
 });
 </script>
+
 
 
 </body>
