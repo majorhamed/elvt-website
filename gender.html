@@ -138,6 +138,129 @@ footer {
   color:#888;
   font-size:0.9em;
 }
+
+/* ===== MEN MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+
+.modal-content {
+  background: #121212;
+  color: #f5f5f5;
+  max-width: 420px;
+  width: 90%;
+  margin: 12% auto;
+  padding: 2.2em;
+  border-radius: 14px;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s ease;
+}
+
+.modal-content h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.category-grid {
+  display: grid;
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.category-grid a {
+  padding: 14px;
+  background: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #f5f5f5;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.category-grid a:hover {
+  background: #8b0000; /* your darker red */
+  transform: translateY(-2px);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* ===== WOMEN MODAL ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  inset: 0;
+  background: rgba(0,0,0,0.75);
+}
+
+.modal-content {
+  background: #121212;
+  color: #f5f5f5;
+  max-width: 420px;
+  width: 90%;
+  margin: 12% auto;
+  padding: 2.2em;
+  border-radius: 14px;
+  text-align: center;
+  position: relative;
+  animation: popIn 0.3s ease;
+}
+
+.modal-content h2 {
+  font-family: 'Playfair Display', serif;
+  letter-spacing: 1px;
+}
+
+.close {
+  position: absolute;
+  top: 14px;
+  right: 18px;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+.category-grid {
+  display: grid;
+  gap: 1em;
+  margin-top: 2em;
+}
+
+.category-grid a {
+  padding: 14px;
+  background: #000;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #f5f5f5;
+  font-weight: 500;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.category-grid a:hover {
+  background: #8b0000; /* your darker red */
+  transform: translateY(-2px);
+}
+
+@keyframes popIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 </style>
 </head>
 <body>
@@ -160,15 +283,21 @@ footer {
 
 <section class="shop-container">
     <div class="shop-item">
-        <a href="merch.html">
+        <a href="javascript:void(0)" onclick="openMenModal()">
             <img src="https://i.pinimg.com/1200x/c9/70/95/c97095b6a9edb367c4c92e0dc020e6de.jpg" alt="SHOP MEN">
-            <p> SHOP MEN</p>
+            <p>SHOP MEN</p>
         </a>
     </div>
 	<div class="shop-item">
-        <a href="merchwoman.html">
+		<a href="javascript:void(0)" onclick="openWomenModal()">
             <img src="https://i.pinimg.com/1200x/c9/70/95/c97095b6a9edb367c4c92e0dc020e6de.jpg" alt="SHOP WOMEN">
             <p>SHOP WOMEN</p>
+        </a>
+    </div>
+	<div class="shop-item">
+        <a href="elvtjerseys.html">
+            <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png" alt="MERCH">
+            <p>ELVT JERSEYS</p>
         </a>
     </div>
 </section>
@@ -185,6 +314,80 @@ menuToggle.addEventListener('click', () => {
     navMenu.classList.toggle('active');
 });
 </script>
+
+<!-- MEN CATEGORY MODAL -->
+<div id="menModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeMenModal()">&times;</span>
+    <h2>Shop Men</h2>
+
+    <div class="category-grid">
+      <a href="mentshirts.html">T-Shirts</a>
+	  <a href="menhoodies.html">Hoodies</a>
+	  <a href="menshorts.html">Shorts</a>
+      <a href="menpants.html">Pants</a>
+	  <a href="mensportswear.html">Sportswear</a>
+    </div>
+  </div>
+</div>
+
+<script>
+
+</script>
+
+<!-- WOMEN CATEGORY MODAL -->
+<div id="womenModal" class="modal">
+  <div class="modal-content">
+    <span class="close" onclick="closeWomenModal()">&times;</span>
+    <h2>Shop Women</h2>
+
+    <div class="category-grid">
+      <a href="womentshirts.html">T-Shirts</a>
+	  <a href="womenhoodies.html">Hoodies</a>
+      <a href="womenpants.html">Pants</a>
+	  <a href="womensportswear.html">Sportswear</a>
+    </div>
+  </div>
+</div>
+
+<script>
+function openMenModal() {
+  document.getElementById("menModal").style.display = "block";
+}
+
+function closeMenModal() {
+  document.getElementById("menModal").style.display = "none";
+}
+
+// Close modal when clicking outside
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("menModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+</script>
+
+<script>
+function openWomenModal() {
+  document.getElementById("womenModal").style.display = "block";
+}
+
+function closeWomenModal() {
+  document.getElementById("womenModal").style.display = "none";
+}
+
+// Close modal when clicking outside
+window.addEventListener("click", function(e) {
+  const modal = document.getElementById("womenModal");
+  if (e.target === modal) {
+    modal.style.display = "none";
+  }
+});
+</script>
+
+
+
 
 
 </body>

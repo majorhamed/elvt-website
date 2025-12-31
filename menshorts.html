@@ -12,6 +12,18 @@
 .shop-item:hover { transform:translateY(-5px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
 .shop-item img { width:100%; height:320px; object-fit:cover; }
 .shop-item p { margin:0.8em 0; font-size:1.1em; font-weight:400; text-align:center; }
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to bottom */
+    width: 260px;
+    background: #121212;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
 .size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
 .size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
 .size-options button:hover { background:#ff6347; border-color:#ff6347; }
@@ -92,6 +104,7 @@ nav a:hover { color:#ff6347; }
 </head>
 <body>
 
+
 <nav>
   <div class="nav-inner">
     <div class="menu-toggle" id="menuToggle">☰</div>
@@ -108,12 +121,11 @@ nav a:hover { color:#ff6347; }
   </div>
 </nav>
 
-
 <section class="shop-container">
-    <div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
-        <p>ELVT Retro Jersey Lebanon Beige</p>
-        <p>$70</p>
+<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/839f74ac28e644a4b82ef79f00995a30.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Mesh Drawstring Shorts BLACK</p>
+        <p>$35</p>
 
     <div class="size-options">
         <button>S</button>
@@ -123,9 +135,69 @@ nav a:hover { color:#ff6347; }
     </div>
 
     <button onclick="addToCart(
-        'ELVT Retro Jersey Lebanon Beige',
-        70,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp',
+        'ELVT Mesh Drawstring Shorts BLACK',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/839f74ac28e644a4b82ef79f00995a30.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/66e6ecd7985b4afab5a75fcb4d726ed5.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Mesh Drawstring Shorts GRAY</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Mesh Drawstring Shorts GRAY',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/66e6ecd7985b4afab5a75fcb4d726ed5.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/cfd685e8ce8c48e3ab7f1c6b83a5b0d5.png" alt="Sportswear 1">
+        <p>ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/cfd685e8ce8c48e3ab7f1c6b83a5b0d5.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -141,9 +213,9 @@ nav a:hover { color:#ff6347; }
     </div>
 	
 	<div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png" alt="Sportswear 1">
-        <p>ELVT Retro Jersey Lebanon White</p>
-        <p>$70</p>
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/a76712be5d34483aab05736541a9c7ba.png" alt="Sportswear 1">
+        <p>ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White</p>
+        <p>$35</p>
 
     <div class="size-options">
         <button>S</button>
@@ -153,9 +225,9 @@ nav a:hover { color:#ff6347; }
     </div>
 
     <button onclick="addToCart(
-        'ELVT Retro Jersey Lebanon White',
-        70,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png',
+        'ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/a76712be5d34483aab05736541a9c7ba.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -169,6 +241,39 @@ nav a:hover { color:#ff6347; }
         Add to Cart
     </button>
     </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/material/style/item_image/image-RP0020%20(1)-v1752720284.jpg" alt="Sportswear 1">
+        <p>ELVT Side-Stripe Performance Shorts</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Side-Stripe Performance Shorts',
+        35,
+        'https://files.tapstitch.com/material/style/item_image/image-RP0020%20(1)-v1752720284.jpg',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	
+	
 	    <!-- Add more items as needed -->
 </section>
 
@@ -214,6 +319,7 @@ function addToCart(name, price, image, item) {
     showToast(`${name} added to cart`);
 }
 
+
 function showToast(message) {
     const toast = document.getElementById('toast');
     toast.innerText = message;
@@ -254,6 +360,7 @@ menuToggle.addEventListener('click', () => {
     box-shadow: 0 4px 15px rgba(0,0,0,0.4);
     z-index: 9999;
 "></div>
+
 
 
 </body>

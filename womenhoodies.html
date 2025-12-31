@@ -15,10 +15,22 @@
 .size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
 .size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
 .size-options button:hover { background:#ff6347; border-color:#ff6347; }
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to bottom */
+    width: 260px;
+    background: #121212;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
 .size-options button.active {
     background: #ff6347;
     border-color: #ff6347;
 }
+
 
 /* Navbar base */
 nav {
@@ -110,10 +122,10 @@ nav a:hover { color:#ff6347; }
 
 
 <section class="shop-container">
-    <div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
-        <p>ELVT Retro Jersey Lebanon Beige</p>
-        <p>$70</p>
+ <div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/30e9cbc5df6641a78c2fe55133750dec.png" alt="Sportswear 1">
+        <p>ELVT Essential Cropped Hoodie</p>
+        <p>$50</p>
 
     <div class="size-options">
         <button>S</button>
@@ -123,9 +135,38 @@ nav a:hover { color:#ff6347; }
     </div>
 
     <button onclick="addToCart(
-        'ELVT Retro Jersey Lebanon Beige',
-        70,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/f44b74265162479896af53efa61a6293.png?x-oss-process=style/hugepod-product-webp',
+        'ELVT Essential Cropped Hoodie',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/30e9cbc5df6641a78c2fe55133750dec.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/152bff5bc4e645a49b397f88ddda1e3b.png" alt="Sportswear 1">
+        <p>ELVT Snow Washed Cropped Hoodie</p>
+         <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Snow Washed Cropped Hoodie',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/152bff5bc4e645a49b397f88ddda1e3b.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -140,35 +181,7 @@ nav a:hover { color:#ff6347; }
     </button>
     </div>
 	
-	<div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png" alt="Sportswear 1">
-        <p>ELVT Retro Jersey Lebanon White</p>
-        <p>$70</p>
-
-    <div class="size-options">
-        <button>S</button>
-        <button>M</button>
-        <button>L</button>
-        <button>XL</button>
-    </div>
-
-    <button onclick="addToCart(
-        'ELVT Retro Jersey Lebanon White',
-        70,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png',
-        this.closest('.shop-item')
-    )" style="
-        width:100%;
-        padding:0.8em;
-        background:#ff6347;
-        border:none;
-        color:#fff;
-        cursor:pointer;
-        font-weight:500;
-    ">
-        Add to Cart
-    </button>
-    </div>
+	
 	    <!-- Add more items as needed -->
 </section>
 

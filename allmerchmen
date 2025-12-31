@@ -1,0 +1,1150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERCH - ELVT.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.shop-container { display:flex; flex-wrap:wrap; justify-content:center; gap:2em; padding:6em 2em 4em; }
+.shop-item { width:260px; background:#121212; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s, box-shadow 0.3s; }
+.shop-item:hover { transform:translateY(-5px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+.shop-item img { width:100%; height:320px; object-fit:cover; }
+.shop-item p { margin:0.8em 0; font-size:1.1em; font-weight:400; text-align:center; }
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to bottom */
+    width: 260px;
+    background: #121212;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
+.size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
+.size-options button:hover { background:#ff6347; border-color:#ff6347; }
+.size-options button.active {
+    background: #ff6347;
+    border-color: #ff6347;
+}
+
+/* Navbar base */
+nav {
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.85);
+    padding:1em 1.5em;
+    z-index:100;
+    backdrop-filter:blur(8px);
+}
+
+.nav-inner {
+    display:flex;
+    align-items:center;
+    justify-content:center; /* desktop centered */
+    max-width:1200px;
+    margin:0 auto;
+}
+
+nav ul {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2em;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav li { display:inline-block; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a:hover { color:#ff6347; }
+
+.menu-toggle {
+    display:none;
+    font-size:1.8em;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* Mobile responsive */
+@media (max-width:768px) {
+    .menu-toggle {
+        display:block;
+    }
+
+    .nav-inner {
+        justify-content:space-between; /* mobile layout */
+    }
+
+    nav ul {
+        position:absolute;
+        top:100%;
+        left:0;
+        width:100%;
+        background:#000;
+        flex-direction:column;
+        align-items:center;
+        gap:1.5em;
+        padding:1.5em 0;
+        display:none;
+    }
+
+    nav ul.active {
+        display:flex;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <ul id="navMenu">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">Philosophy</a></li>
+      <li><a href="merch.html#merch">Merch</a></li>
+      <li><a href="index.html#gallery">Collection</a></li>
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<section class="shop-container">
+    <div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/c3433d0146e3496889a2cd9e666cbb20.png" alt="Sportswear 1">
+        <p>ELVT Contrast-Stitched Boxy Fleece Hoodie</p>
+         <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast-Stitched Boxy Fleece Hoodie',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/c3433d0146e3496889a2cd9e666cbb20.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/e272073602f44ccbb81b39b369ede88c.png" alt="Sportswear 1">
+        <p>ELVT Vintage Washed Frayed-Hem Hoodie</p>
+        <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Vintage Washed Frayed-Hem Hoodie',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/e272073602f44ccbb81b39b369ede88c.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div> 
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/8e7e753dda5f4e9a82a60faffa5c7680.png" alt="Sportswear 1">
+        <p>ELVT Snow Wash Hand-Frayed Heavyweight Hoodie</p>
+        <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Snow Wash Hand-Frayed Heavyweight Hoodie',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/8e7e753dda5f4e9a82a60faffa5c7680.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png" alt="Sportswear 1">
+        <p>ELVT Contrast Piped Panel T-Shirt</p>
+<p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Piped Panel T-Shirt',
+       45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/a253b73eab914e2c86f5d0a1a4ea04d5.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Reflection Striped Straight-Leg Sweatpants BLACK</p>
+<p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Reflection Striped Straight-Leg Sweatpants BLACK',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/a253b73eab914e2c86f5d0a1a4ea04d5.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0ce9baebd1f448cc8d481c35c2873e63.png" alt="Sportswear 1">
+        <p>ELVT Snow Wash Raw-Hem Boxy T-shirt</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Snow Wash Raw-Hem Boxy T-shirt',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/0ce9baebd1f448cc8d481c35c2873e63.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/372ee6ca173d40eeae2538de06f96469.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Reflection Striped Straight-Leg Sweatpants DARK GRAY</p>
+        <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Reflection Striped Straight-Leg Sweatpants DARK GRAY',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/372ee6ca173d40eeae2538de06f96469.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/5c80de08315c4d6db4a2a4d9ddf74982.png" alt="Sportswear 1">
+        <p>ELVT Soft Hooded Sports Jacket BLACK</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Soft Hooded Sports Jacket BLACK',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/5c80de08315c4d6db4a2a4d9ddf74982.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/cb549d2299c34760b87413e308ea2fb7.png" alt="Sportswear 1">
+        <p>ELVT Soft Hooded Sports Jacket WHITE</p>
+       <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Soft Hooded Sports Jacket WHITE',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/cb549d2299c34760b87413e308ea2fb7.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/493e594f2855441d9928e8ba1a7a664a.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Essential Drawstring Jogged Sweatpants</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Essential Drawstring Jogged Sweatpants',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/493e594f2855441d9928e8ba1a7a664a.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/efd2e28d49a245e4a18126644ba2cdab.png" alt="Sportswear 1">
+        <p>ELVT French Terry Boxy Tank Top</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT French Terry Boxy Tank Top',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/efd2e28d49a245e4a18126644ba2cdab.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/115f4588dbc94f63bf610b2a4038cca9.png" alt="Sportswear 1">
+        <p>ELVT Raw Edge Cotton Tank Top</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Raw Edge Cotton Tank Top',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/115f4588dbc94f63bf610b2a4038cca9.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/bc9cf6f307e6424186674ce7915e4474.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Essential Heavyweight Hoodie BLACK</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Essential Heavyweight Hoodie BLACK',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/bc9cf6f307e6424186674ce7915e4474.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/2e1069389c7a46669da334d1318042fa.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Essential Heavyweight Hoodie DULL RED</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Essential Heavyweight Hoodie DULL RED',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/2e1069389c7a46669da334d1318042fa.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/9b7c42efce5e4616af6ba4f52f757f6c.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Essential Heavyweight Hoodie CAMEL</p>
+<p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Essential Heavyweight Hoodie CAMEL',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/9b7c42efce5e4616af6ba4f52f757f6c.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	
+	
+
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/material/style/item_image/image-RP0020%20(1)-v1752720284.jpg" alt="Sportswear 1">
+        <p>ELVT Men's Side-Stripe Performance Shorts</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Men's Side-Stripe Performance Shorts',
+        35,
+        'https://files.tapstitch.com/material/style/item_image/image-RP0020%20(1)-v1752720284.jpg',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/material/style/item_image/image-RK0033%20(1)-v1761277794.jpg" alt="Sportswear 1">
+        <p>ELVT Contrast-Stitched Fleece Sweatpants</p>
+        <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast-Stitched Fleece Sweatpants',
+        60,
+        'https://files.tapstitch.com/material/style/item_image/image-RK0033%20(1)-v1761277794.jpg',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/cfd685e8ce8c48e3ab7f1c6b83a5b0d5.png" alt="Sportswear 1">
+        <p>ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/cfd685e8ce8c48e3ab7f1c6b83a5b0d5.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/a76712be5d34483aab05736541a9c7ba.png" alt="Sportswear 1">
+        <p>ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/a76712be5d34483aab05736541a9c7ba.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/731c9f4bc1c34172997a526f1a822c77.png" alt="Sportswear 1">
+        <p>ELVT Performance Short Sleeve T-Shirt BLACK</p>
+<p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Performance Short Sleeve T-Shirt BLACK',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/731c9f4bc1c34172997a526f1a822c77.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0788c293c3f7480aa24a9f8044e663c9.png" alt="Sportswear 1">
+        <p>ELVT Performance Short Sleeve T-Shirt WHITE</p>
+       <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Performance Short Sleeve T-Shirt WHITE',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/0788c293c3f7480aa24a9f8044e663c9.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0249bcf0c1a64c51800a0a4cf73b3f67.png" alt="Sportswear 1">
+        <p>ELVT Performance Short Sleeve T-Shirt GRAY</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Performance Short Sleeve T-Shirt GRAY',
+        40,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/0249bcf0c1a64c51800a0a4cf73b3f67.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div>	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/839f74ac28e644a4b82ef79f00995a30.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Mesh Drawstring Shorts BLACK</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Mesh Drawstring Shorts BLACK',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/839f74ac28e644a4b82ef79f00995a30.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/66e6ecd7985b4afab5a75fcb4d726ed5.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Mesh Drawstring Shorts GRAY</p>
+        <p>$35</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Mesh Drawstring Shorts GRAY',
+        35,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/66e6ecd7985b4afab5a75fcb4d726ed5.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/814e94874a6940d581b4c30e33fe1e66.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Contrast Panel Cotton T-Shirt BLACK</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Panel Cotton T-Shirt BLACK',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/814e94874a6940d581b4c30e33fe1e66.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div>
+ 	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/9d1eb9bd55994e96b63f3cd279903abf.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Contrast Panel Cotton T-Shirt CAMEL</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Panel Cotton T-Shirt CAMEL',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/9d1eb9bd55994e96b63f3cd279903abf.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/b6dda144100f474f8591a66c865831a9.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Contrast Panel Cotton T-Shirt RED</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Panel Cotton T-Shirt RED',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/b6dda144100f474f8591a66c865831a9.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/6f0b064defa4465882d224db9f53cff7.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Contrast Panel Cotton T-Shirt NAVY BLUE</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Panel Cotton T-Shirt NAVY BLUE',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/6f0b064defa4465882d224db9f53cff7.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/1a08c6347ef6442ca337563039291eb4.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Contrast Panel Cotton T-Shirt GRAY COFFEE</p>
+        <p>$45</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Contrast Panel Cotton T-Shirt GRAY COFFEE',
+        45,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/1a08c6347ef6442ca337563039291eb4.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/712d69e14bf944bf877ae364f4bd973b.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Vintage Washed Gradient Straight-Leg Sweatpants BLACK</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Vintage Washed Gradient Straight-Leg Sweatpants BLACK',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/712d69e14bf944bf877ae364f4bd973b.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/f30d88d4415c487993b6770a52907840.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Vintage Washed Gradient Straight-Leg Sweatpants COFFEE</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Vintage Washed Gradient Straight-Leg Sweatpants COFFEE',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/f30d88d4415c487993b6770a52907840.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/7342826ed63042c0913f6a436c357222.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
+        <p>ELVT Vintage Washed Gradient Straight-Leg Sweatpants DARK GRAY</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Vintage Washed Gradient Straight-Leg Sweatpants DARK GRAY',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/7342826ed63042c0913f6a436c357222.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>	
+    </div>
+	
+	
+	    <!-- Add more items as needed -->
+</section>
+
+<footer>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll('.shop-item').forEach(item => {
+        const sizeButtons = item.querySelectorAll('.size-options button');
+
+        sizeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Clear active only for this product
+                sizeButtons.forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+                item.dataset.size = btn.innerText;
+            });
+        });
+    });
+
+});
+
+function addToCart(name, price, image, item) {
+    const size = item.dataset.size;
+    if (!size) {
+        showToast("Please select a size");
+        return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(p => p.name === name && p.size === size);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ name, price, image, size, qty: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} added to cart`);
+}
+
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+    }, 2000); // disappears after 2 seconds
+}
+
+</script>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+
+<!-- Toast notification container -->
+<div id="toast" style="
+     position: fixed;
+    bottom: 2em;               /* distance from bottom */
+    left: 40%;                  /* slightly left of center */
+    background: #ff6347;
+    color: #fff;
+    padding: 1em 2em;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
+"></div>
+
+
+
+</body>
+</html>
