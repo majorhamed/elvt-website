@@ -241,4 +241,95 @@ nav a:hover { color:#ff6347; }
         Add to Cart
     </button>
     </div>
-    </div>
+ 
+ 
+ 
+ <!-- Add more items as needed -->
+</section>
+
+<footer>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll('.shop-item').forEach(item => {
+        const sizeButtons = item.querySelectorAll('.size-options button');
+
+        sizeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Clear active only for this product
+                sizeButtons.forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+                item.dataset.size = btn.innerText;
+            });
+        });
+    });
+
+});
+
+function addToCart(name, price, image, item) {
+    const size = item.dataset.size;
+    if (!size) {
+        showToast("Please select a size");
+        return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(p => p.name === name && p.size === size);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ name, price, image, size, qty: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} added to cart`);
+}
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+    }, 2000); // disappears after 2 seconds
+}
+
+</script>
+
+<script>
+const menuToggle = document.getElementById('menuToggle');
+const navMenu = document.getElementById('navMenu');
+
+menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+});
+</script>
+
+<!-- Toast notification container -->
+<div id="toast" style="
+     position: fixed;
+    bottom: 2em;               /* distance from bottom */
+    left: 40%;                  /* slightly left of center */
+    background: #ff6347;
+    color: #fff;
+    padding: 1em 2em;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
+"></div>
+
+
+</body>
+</html>
