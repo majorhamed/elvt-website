@@ -72,33 +72,69 @@ nav a:hover { color:#ff6347; }
     user-select:none;
 }
 
-/* Mobile responsive */
+/* ===== Premium Mobile Nav ===== */
 @media (max-width:768px) {
-    .menu-toggle {
-        display:block;
+
+    body.nav-open {
+        overflow: hidden;
     }
 
-    .nav-inner {
-        justify-content:space-between; /* mobile layout */
+    .menu-toggle {
+        display:block;
+        font-size:1.9em;
+        z-index:1001;
+        transition: transform 0.4s ease;
     }
 
     nav ul {
-        position:absolute;
-        top:100%;
-        left:0;
+        position:fixed;
+        inset:0;
+        height:100vh;
         width:100%;
-        background:#000;
+        background:rgba(0,0,0,0.96);
         flex-direction:column;
+        justify-content:center;
         align-items:center;
-        gap:1.5em;
-        padding:1.5em 0;
-        display:none;
+        gap:2em;
+        padding:0;
+        margin:0;
+        transform:translateY(-100%);
+        transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);
     }
 
     nav ul.active {
-        display:flex;
+        transform:translateY(0);
+    }
+
+    nav ul li {
+        opacity:0;
+        transform:translateY(30px);
+        animation: navItemFade 0.6s ease forwards;
+    }
+
+    nav ul.active li:nth-child(1) { animation-delay:0.15s; }
+    nav ul.active li:nth-child(2) { animation-delay:0.25s; }
+    nav ul.active li:nth-child(3) { animation-delay:0.35s; }
+    nav ul.active li:nth-child(4) { animation-delay:0.45s; }
+    nav ul.active li:nth-child(5) { animation-delay:0.55s; }
+    nav ul.active li:nth-child(6) { animation-delay:0.65s; }
+    nav ul.active li:nth-child(7) { animation-delay:0.75s; }
+
+    nav ul a {
+        font-size:1.4em;
+        letter-spacing:2px;
+        text-transform:uppercase;
     }
 }
+
+/* Menu item animation */
+@keyframes navItemFade {
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
 
 </style>
 </head>
@@ -493,13 +529,35 @@ function showToast(message) {
 </script>
 
 <script>
-const menuToggle = document.getElementById('menuToggle');
-const navMenu = document.getElementById('navMenu');
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("navMenu");
+const body = document.body;
 
-menuToggle.addEventListener('click', () => {
-    navMenu.classList.toggle('active');
+toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    body.classList.toggle("nav-open");
+
+    toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
+
+    // reset animations when reopening
+    if (menu.classList.contains("active")) {
+        menu.querySelectorAll("li").forEach(li => {
+            li.style.animation = "none";
+            li.offsetHeight; // trigger reflow
+            li.style.animation = "";
+        });
+    }
+});
+
+menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menu.classList.remove("active");
+        body.classList.remove("nav-open");
+        toggle.textContent = "☰";
+    });
 });
 </script>
+
 
 <!-- Toast notification container -->
 <div id="toast" style="
