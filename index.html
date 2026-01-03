@@ -232,6 +232,7 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 .cart-icon svg {
     width: 28px;
     height: 28px;
+    display: block; /* FIX: remove tiny baseline offset */
 }
 
 .cart-icon:hover {
@@ -244,16 +245,16 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     .cart-icon {
         display: block;
         position: absolute;
-        right: 1.5em;
-        top: 50%;
+        right: 1.5em;      /* right edge of navbar */
+        top: 50%;           /* vertical center */
         transform: translateY(-50%);
     }
 
-    /* Adjust hamburger if needed */
+    /* FIXED: Hamburger perfectly aligned with cart */
     .menu-toggle {
-        right: 4em; /* move slightly left so they don't overlap */
+        left: 1.5em;       /* left edge of navbar */
         position: absolute;
-        top: 50%;
+        top: 50%;           /* vertical center */
         transform: translateY(-50%);
     }
 }
