@@ -220,6 +220,45 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     }
 }
 
+/* PROFESSIONAL CART ICON */
+.cart-icon {
+    display: none; /* hidden on desktop */
+    font-size: 1.5em;
+    color: #f5f5f5;
+    transition: transform 0.3s, color 0.3s;
+    z-index: 1002;
+}
+
+.cart-icon svg {
+    width: 28px;
+    height: 28px;
+}
+
+.cart-icon:hover {
+    transform: scale(1.2);
+    color: #ff6347;
+}
+
+/* SHOW CART ICON ONLY ON MOBILE */
+@media (max-width:768px) {
+    .cart-icon {
+        display: block;
+        position: absolute;
+        right: 1.5em;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+
+    /* Adjust hamburger if needed */
+    .menu-toggle {
+        right: 4em; /* move slightly left so they don't overlap */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+    }
+}
+
+
 
 </style>
 </head>
@@ -229,6 +268,15 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 <nav>
     <div class="nav-inner">
         <div class="menu-toggle" id="menuToggle">☰</div>
+	
+	<!-- CART ICON (mobile only) -->
+<a href="cart.html" class="cart-icon" aria-label="Cart">
+    <!-- Inline SVG icon -->
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+        <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2 2-.897 2-2-.896-2-2-2zm10 0c-1.104 0-2 .897-2 2s.896 2 2 2 2-.897 2-2-.896-2-2-2zm-12.846-3l1.2-6h14.572l-1.2 6H4.154zM3 2h2l3.6 7.59-1.35 2.45C7.16 12.37 7 12.69 7 13c0 .553.447 1 1 1h12v-2H8.42l.75-1.36L18 4H6.21L5.21 2H3z"/>
+    </svg>
+</a>
+
 
         <ul id="navMenu">
             <li><a href="#hero">Home</a></li>
