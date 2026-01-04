@@ -172,8 +172,8 @@ nav a:hover { color:#ff6347; }
 
 <section class="shop-container">
 <div class="shop-item">
-        <img src="images/blue.png" alt="ELVT DRIFIT TEE">
-        <p>ELVT DRIFIT TEE</p>
+        <img src="images/blue.PNG" alt="ELVT DRIFIT TEE">
+        <p>ELVT DRIFIT TEE BLUE</p>
         <p>$40</p>
 
     <div class="size-options">
@@ -184,9 +184,69 @@ nav a:hover { color:#ff6347; }
     </div>
 
     <button onclick="addToCart(
-        'ELVT DRIFIT TEE',
+        'ELVT DRIFIT TEE BLUE',
         40,
-        'images/blue.png',
+        'images/blue.PNG',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	<div class="shop-item">
+        <img src="images/green.PNG" alt="ELVT DRIFIT TEE">
+        <p>ELVT DRIFIT TEE GREEN</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT DRIFIT TEE GREEN',
+        40,
+        'images/green.PNG',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	<div class="shop-item">
+        <img src="images/red.PNG" alt="ELVT DRIFIT TEE">
+        <p>ELVT DRIFIT TEE RED</p>
+        <p>$40</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT DRIFIT TEE RED',
+        40,
+        'images/red.PNG',
         this.closest('.shop-item')
     )" style="
         width:100%;
