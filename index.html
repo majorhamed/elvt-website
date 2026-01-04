@@ -278,6 +278,15 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     }
 }
 
+@media (max-width:768px) {
+
+    .nav-inner {
+        justify-content: space-between;
+    }
+
+}
+
+
 /* Menu item animation */
 @keyframes navItemFade {
     to {
@@ -315,14 +324,20 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
         transform: translateY(-50%);
     }
 
-    /* Adjust hamburger if needed */
+@media (max-width:768px) {
+
     .menu-toggle {
-        right: 4em; /* move slightly left so they don't overlap */
         position: absolute;
+        left: 1.5em;
         top: 50%;
         transform: translateY(-50%);
+        font-size: 1.9em;
+        z-index: 1002;
+        cursor: pointer;
     }
+
 }
+
 
 
 
