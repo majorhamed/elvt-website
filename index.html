@@ -89,14 +89,13 @@ nav ul {
 #hero::before {
     content: '';
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 50%; left: 50%;
     transform: translate(-50%, -50%);
-    width: 1700px;  /* original size on desktop */
+    width: 1700px; /* adjust size of logo */
     height: 1000px;
     background: url('images/logo.png') center/contain no-repeat;
-    opacity: 0.09;
-    pointer-events: none;
+    opacity: 0.09; /* fade effect */
+    pointer-events: none; /* clicks pass through */
     z-index: 0;
 }
 
@@ -122,22 +121,6 @@ nav ul {
     animation: logoFadeIn 2s ease-out forwards;
 }
 
-@media (max-width: 768px) {
-  html, body {
-    overflow-x: hidden;
-    width: 100%;
-  }
-
-  .logo img,
-  .logo {
-    max-width: 120px;
-    height: auto;
-  }
-
-  nav {
-    overflow-x: hidden;
-  }
-}
 
 
 
@@ -234,7 +217,7 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     .menu-toggle {
         display:block;
         font-size:1.9em;
-        z-index:1005;
+        z-index:1001;
         transition: transform 0.4s ease;
     }
 
@@ -324,14 +307,6 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
         transform: translateY(-50%);
     }
 }
-
-@media (max-width: 768px) {
-    #hero::before {
-        width: 90vw;   /* shrink width to 90% of viewport */
-        height: auto;  /* maintain aspect ratio */
-    }
-}
-
 
 
 
@@ -474,9 +449,9 @@ toggle.addEventListener("click", () => {
 
     toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
 
-    // reset menu item animations
+    // reset animations when reopening
     if (menu.classList.contains("active")) {
-        menu.querySelectorAll("li").forEach((li) => {
+        menu.querySelectorAll("li").forEach(li => {
             li.style.animation = "none";
             li.offsetHeight; // trigger reflow
             li.style.animation = "";
@@ -484,14 +459,13 @@ toggle.addEventListener("click", () => {
     }
 });
 
-menu.querySelectorAll("a").forEach((link) => {
+menu.querySelectorAll("a").forEach(link => {
     link.addEventListener("click", () => {
         menu.classList.remove("active");
         body.classList.remove("nav-open");
         toggle.textContent = "☰";
     });
 });
-
 </script>
 
 
