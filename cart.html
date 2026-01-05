@@ -206,7 +206,7 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
         <input type="hidden" name="_subject" value="New ELVT Order">
         <input type="hidden" name="_replyto" value="elvtbyadam@outlook.com">
         <input type="hidden" name="cartDetails" id="cartDetails">
-        <button type="submit">Send Order</button>
+       <button type="submit" id="place-order-btn">Place Order</button>
     </form>
 
     <!-- Success Message (outside form so it stays visible) -->
@@ -300,18 +300,13 @@ form.addEventListener('submit', function(event){
     })
     .then(response => {
         if(response.ok){
-            successMsg.classList.add('show'); // show success message
-            cart = []; // clear in-memory cart
-            localStorage.removeItem('cart'); // clear storage
-            renderCart(); // update cart display
-            form.style.display = 'none'; // hide form
+            // Redirect to Stripe Payment Link
+            window.location.href = "https://buy.stripe.com/28EdRb1BZ3do5ePcsUaMU00";
         } else {
-            alert('Error sending order.');
+            alert("Error sending order.");
         }
     })
-    .catch(error => {
-        alert('Error sending order: ' + error);
-    });
+    .catch(() => alert("Network error."));
 });
 </script>
 
