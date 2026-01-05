@@ -192,30 +192,32 @@ form.addEventListener('submit', async function(event){
         return;
     }
 
-    // Prepare cart text for email
-    cartDetailsInput.value = cart.map(item => 
+    // Send Formspree email
+    cartDetailsInput.value = cart.map(item =>
         `${item.name} | Size: ${item.size} | Qty: ${item.qty} | $${(item.price*item.qty).toFixed(2)}`
     ).join("\n");
 
-    // Send Formspree email
-    const formData = new FormData(form);
-    await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' } });
+    await fetch(form.action, {
+        method: form.method,
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+    });
 
-    // Send cart to Stripe
-    const response = await fetch('/api/create-checkout-session', {
+    // Redirect to Stripe
+    const response = await fetch('/api/create-checkout-session.js', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ cartItems: cart })
     });
 
     const data = await response.json();
-
     if(data.url){
         window.location.href = data.url;
     } else {
         alert('Something went wrong with Stripe checkout.');
     }
 });
+
 </script>
 </body>
 </html>
