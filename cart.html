@@ -9,86 +9,19 @@
 html, body { height: 100%; margin: 0; }
 body { display: flex; flex-direction: column; font-family: 'Poppins', sans-serif; background: #0a0a0a; color: #f5f5f5; scroll-behavior: smooth; }
 
-/* Navbar base */
-nav {
-    position:fixed;
-    top:0;
-    width:100%;
-    background:rgba(0,0,0,0.85);
-    padding:1em 1.5em;
-    z-index:100;
-    backdrop-filter:blur(8px);
-}
-
-.nav-inner {
-    display:flex;
-    align-items:center;
-    justify-content:center; /* desktop centered */
-    max-width:1200px;
-    margin:0 auto;
-}
-
-nav ul {
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    gap:2em;
-    list-style:none;
-    margin:0;
-    padding:0;
-}
-
+nav { position:fixed; top:0; width:100%; background:rgba(0,0,0,0.85); padding:1em 1.5em; z-index:100; backdrop-filter:blur(8px); }
+.nav-inner { display:flex; align-items:center; justify-content:center; max-width:1200px; margin:0 auto; }
+nav ul { display:flex; justify-content:center; align-items:center; gap:2em; list-style:none; margin:0; padding:0; }
 nav li { display:inline-block; }
-nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; text-decoration:none; }
 nav a:hover { color:#ff6347; }
-
-.menu-toggle {
-    display:none;
-    font-size:1.8em;
-    cursor:pointer;
-    user-select:none;
-}
-
-/* ===== Premium Mobile Nav ===== */
+.menu-toggle { display:none; font-size:1.8em; cursor:pointer; user-select:none; }
 @media (max-width:768px) {
-
-    body.nav-open {
-        overflow: hidden;
-    }
-
-    .menu-toggle {
-        display:block;
-        font-size:1.9em;
-        z-index:1001;
-        transition: transform 0.4s ease;
-    }
-
-    nav ul {
-        position:fixed;
-        inset:0;
-        height:100vh;
-        width:100%;
-        background:rgba(0,0,0,0.96);
-        flex-direction:column;
-        justify-content:center;
-        align-items:center;
-        gap:2em;
-        padding:0;
-        margin:0;
-        transform:translateY(-100%);
-        transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);
-    }
-
-    nav ul.active {
-        transform:translateY(0);
-    }
-
-    nav ul li {
-        opacity:0;
-        transform:translateY(30px);
-        animation: navItemFade 0.6s ease forwards;
-    }
-
+    body.nav-open { overflow: hidden; }
+    .menu-toggle { display:block; font-size:1.9em; z-index:1001; transition: transform 0.4s ease; }
+    nav ul { position:fixed; inset:0; height:100vh; width:100%; background:rgba(0,0,0,0.96); flex-direction:column; justify-content:center; align-items:center; gap:2em; padding:0; margin:0; transform:translateY(-100%); transition:transform 0.6s cubic-bezier(0.77,0,0.175,1); }
+    nav ul.active { transform:translateY(0); }
+    nav ul li { opacity:0; transform:translateY(30px); animation: navItemFade 0.6s ease forwards; }
     nav ul.active li:nth-child(1) { animation-delay:0.15s; }
     nav ul.active li:nth-child(2) { animation-delay:0.25s; }
     nav ul.active li:nth-child(3) { animation-delay:0.35s; }
@@ -96,44 +29,14 @@ nav a:hover { color:#ff6347; }
     nav ul.active li:nth-child(5) { animation-delay:0.55s; }
     nav ul.active li:nth-child(6) { animation-delay:0.65s; }
     nav ul.active li:nth-child(7) { animation-delay:0.75s; }
-
-    nav ul a {
-        font-size:1.4em;
-        letter-spacing:2px;
-        text-transform:uppercase;
-    }
+    nav ul a { font-size:1.4em; letter-spacing:2px; text-transform:uppercase; }
+    .nav-inner { justify-content: flex-start; }
+    .menu-toggle { position: relative; }
 }
-
-/* Menu item animation */
-@keyframes navItemFade {
-    to {
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-
-/* Fix hamburger placement on mobile */
-@media (max-width:768px) {
-    .nav-inner {
-        justify-content: flex-start;
-    }
-
-    .menu-toggle {
-        position: relative;
-    }
-}
-
-nav a {
-    text-decoration: none;  /* remove underline */
-    color: #f5f5f5;
-}
-
-
+@keyframes navItemFade { to { opacity:1; transform:translateY(0); } }
 
 .cart-container { flex: 1; max-width: 900px; margin: 0 auto; padding: 120px 20px 60px 20px; }
 h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; margin-bottom:30px; text-align:center; }
-
 .cart-item { display:flex; gap:20px; align-items:center; padding:20px 0; border-bottom:1px solid #333; }
 .cart-item img { width:90px; border-radius:8px; }
 .cart-details { flex:1; }
@@ -142,29 +45,20 @@ h1 { font-family:'Playfair Display', serif; font-size:2.5em; font-weight:700; ma
 .cart-actions { text-align:right; }
 .remove-btn { background:#b00000; color:#fff; border:none; padding:8px 14px; cursor:pointer; border-radius:4px; transition:0.3s; }
 .remove-btn:hover { background:#ff3b3b; }
-
 .total { text-align:right; font-size:22px; margin-top:30px; }
-
 #order-form { display:flex; flex-direction:column; gap:1em; max-width:400px; margin:2em auto; }
 #order-form input, #order-form textarea { padding:0.8em; background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; transition:0.3s; }
 #order-form input:focus, #order-form textarea:focus { border-color:#ff6347; box-shadow:0 0 8px rgba(255,99,71,0.5); outline:none; }
 #order-form button { padding:1em; border:none; background:#ff6347; color:white; cursor:pointer; font-weight:500; transition: transform 0.3s; }
 #order-form button:hover { transform:scale(1.05); }
-
 .success-message { display:none; color:#ff6347; margin-top:0.5em; font-weight:500; opacity:0; transition:opacity 0.5s ease-in-out; text-align:center; font-size:1.1em; }
 .success-message.show { display:block; opacity:1; }
-
 .empty { text-align:center; opacity:.6; margin-top:60px; font-size:1.2em; }
-
 footer { text-align:center; padding:2em; background:#000; color:#888; font-size:0.9em; }
 footer .social-icons { display:flex; justify-content:center; gap:1em; margin-bottom:1em; }
 footer .social-icons a svg { width:24px; height:24px; fill:#fff; transition: transform 0.3s, fill 0.3s; }
 footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
-
-@media(max-width:768px) {
-    .cart-item { flex-direction:column; align-items:flex-start; }
-    .cart-actions { width:100%; text-align:left; margin-top:10px; }
-}
+@media(max-width:768px) { .cart-item { flex-direction:column; align-items:flex-start; } .cart-actions { width:100%; text-align:left; margin-top:10px; } }
 </style>
 </head>
 <body>
@@ -173,7 +67,6 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 <nav>
   <div class="nav-inner">
     <div class="menu-toggle" id="menuToggle">☰</div>
-
     <ul id="navMenu">
       <li><a href="index.html#hero">Home</a></li>
       <li><a href="index.html#about">Philosophy</a></li>
@@ -185,7 +78,6 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     </ul>
   </div>
 </nav>
-
 
 <!-- Cart Section -->
 <div class="cart-container">
@@ -206,10 +98,9 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
         <input type="hidden" name="_subject" value="New ELVT Order">
         <input type="hidden" name="_replyto" value="elvtbyadam@outlook.com">
         <input type="hidden" name="cartDetails" id="cartDetails">
-       <button type="submit" id="place-order-btn">Place Order</button>
+        <button type="submit">Place Order</button>
     </form>
 
-    <!-- Success Message (outside form so it stays visible) -->
     <p id="order-success" class="success-message">Your order was sent successfully! We will contact you shortly. Thank you!</p>
 </div>
 
@@ -228,6 +119,21 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 </footer>
 
 <script>
+// Navbar toggle
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("navMenu");
+const body = document.body;
+toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    body.classList.toggle("nav-open");
+    toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
+    if (menu.classList.contains("active")) {
+        menu.querySelectorAll("li").forEach(li => { li.style.animation = "none"; li.offsetHeight; li.style.animation = ""; });
+    }
+});
+menu.querySelectorAll("a").forEach(link => { link.addEventListener("click", () => { menu.classList.remove("active"); body.classList.remove("nav-open"); toggle.textContent = "☰"; }); });
+
+// Cart rendering
 let cart = JSON.parse(localStorage.getItem('cart')) || [];
 const cartItems = document.getElementById('cart-items');
 const cartTotal = document.getElementById('cart-total');
@@ -273,11 +179,12 @@ function removeItem(index){
 
 renderCart();
 
+// Form submission + Stripe
 const form = document.getElementById('order-form');
 const successMsg = document.getElementById('order-success');
 const cartDetailsInput = document.getElementById('cartDetails');
 
-form.addEventListener('submit', function(event){
+form.addEventListener('submit', async function(event){
     event.preventDefault();
 
     if(cart.length === 0){
@@ -285,62 +192,30 @@ form.addEventListener('submit', function(event){
         return;
     }
 
-    let cartText = cart.map(item => 
+    // Prepare cart text for email
+    cartDetailsInput.value = cart.map(item => 
         `${item.name} | Size: ${item.size} | Qty: ${item.qty} | $${(item.price*item.qty).toFixed(2)}`
     ).join("\n");
 
-    cartDetailsInput.value = cartText;
-
+    // Send Formspree email
     const formData = new FormData(form);
+    await fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' } });
 
-    fetch(form.action, {
-        method: form.method,
-        body: formData,
-        headers: { 'Accept': 'application/json' }
-    })
-    .then(response => {
-        if(response.ok){
-            // Redirect to Stripe Payment Link
-            window.location.href = "https://buy.stripe.com/28EdRb1BZ3do5ePcsUaMU00";
-        } else {
-            alert("Error sending order.");
-        }
-    })
-    .catch(() => alert("Network error."));
-});
-</script>
+    // Send cart to Stripe
+    const response = await fetch('/api/create-checkout-session', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ cartItems: cart })
+    });
 
-<script>
-const toggle = document.getElementById("menuToggle");
-const menu = document.getElementById("navMenu");
-const body = document.body;
+    const data = await response.json();
 
-toggle.addEventListener("click", () => {
-    menu.classList.toggle("active");
-    body.classList.toggle("nav-open");
-
-    toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
-
-    // reset animations when reopening
-    if (menu.classList.contains("active")) {
-        menu.querySelectorAll("li").forEach(li => {
-            li.style.animation = "none";
-            li.offsetHeight; // trigger reflow
-            li.style.animation = "";
-        });
+    if(data.url){
+        window.location.href = data.url;
+    } else {
+        alert('Something went wrong with Stripe checkout.');
     }
 });
-
-menu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-        menu.classList.remove("active");
-        body.classList.remove("nav-open");
-        toggle.textContent = "☰";
-    });
-});
 </script>
-
-
-
 </body>
 </html>
