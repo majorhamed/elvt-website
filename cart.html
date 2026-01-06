@@ -179,10 +179,8 @@ function removeItem(index){
 
 renderCart();
 
-// Form submission + Stripe
+// Only Stripe checkout
 const form = document.getElementById('order-form');
-const successMsg = document.getElementById('order-success');
-const cartDetailsInput = document.getElementById('cartDetails');
 
 form.addEventListener('submit', async function(event){
     event.preventDefault();
@@ -192,32 +190,27 @@ form.addEventListener('submit', async function(event){
         return;
     }
 
-    // Send Formspree email
-    cartDetailsInput.value = cart.map(item =>
-        `${item.name} | Size: ${item.size} | Qty: ${item.qty} | $${(item.price*item.qty).toFixed(2)}`
-    ).join("\n");
+    try {
+        const response = await fetch('/api/create-checkout-session', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ cartItems: cart })
+        });
 
-    await fetch(form.action, {
-        method: form.method,
-        body: new FormData(form),
-        headers: { 'Accept': 'application/json' }
-    });
+        const data = await response.json();
+        console.log(data); // check if session.url exists
 
-    // Redirect to Stripe
-    const response = await fetch('/api/create-checkout-session.js', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ cartItems: cart })
-    });
-
-    const data = await response.json();
-    if(data.url){
-        window.location.href = data.url;
-    } else {
-        alert('Something went wrong with Stripe checkout.');
+        if(data.url){
+            window.location.href = data.url; // redirect to Stripe
+        } else {
+            alert('Something went wrong with Stripe checkout.');
+        }
+    } catch(err) {
+        console.error(err);
+        alert('Error connecting to Stripe.');
     }
 });
-
 </script>
+
 </body>
 </html>
