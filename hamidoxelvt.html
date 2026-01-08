@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MERCH - ELVT.</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.shop-container { display:flex; flex-wrap:wrap; justify-content:center; gap:2em; padding:6em 2em 4em; }
+.shop-item { width:260px; background:#121212; border-radius:12px; overflow:hidden; box-shadow:0 4px 15px rgba(0,0,0,0.3); transition:transform 0.3s, box-shadow 0.3s; }
+.shop-item:hover { transform:translateY(-5px); box-shadow:0 6px 20px rgba(0,0,0,0.4); }
+.shop-item img { width:100%; height:320px; object-fit:cover; }
+.shop-item p { margin:0.8em 0; font-size:1.1em; font-weight:400; text-align:center; }
+.shop-item {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /* Pushes button to bottom */
+    width: 260px;
+    background: #121212;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.size-options { display:flex; justify-content:center; gap:0.5em; margin-bottom:1em; }
+.size-options button { background:#1a1a1a; color:#fff; border:1px solid #333; border-radius:5px; padding:0.4em 0.8em; cursor:pointer; transition:0.3s; font-size:0.9em; }
+.size-options button:hover { background:#ff6347; border-color:#ff6347; }
+.size-options button.active {
+    background: #ff6347;
+    border-color: #ff6347;
+}
+
+/* Navbar base */
+nav {
+    position:fixed;
+    top:0;
+    width:100%;
+    background:rgba(0,0,0,0.85);
+    padding:1em 1.5em;
+    z-index:100;
+    backdrop-filter:blur(8px);
+}
+
+.nav-inner {
+    display:flex;
+    align-items:center;
+    justify-content:center; /* desktop centered */
+    max-width:1200px;
+    margin:0 auto;
+}
+
+nav ul {
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:2em;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+
+nav li { display:inline-block; }
+nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
+nav a:hover { color:#ff6347; }
+
+.menu-toggle {
+    display:none;
+    font-size:1.8em;
+    cursor:pointer;
+    user-select:none;
+}
+
+/* ===== Premium Mobile Nav ===== */
+@media (max-width:768px) {
+
+    body.nav-open {
+        overflow: hidden;
+    }
+
+    .menu-toggle {
+        display:block;
+        font-size:1.9em;
+        z-index:1001;
+        transition: transform 0.4s ease;
+    }
+
+    nav ul {
+        position:fixed;
+        inset:0;
+        height:100vh;
+        width:100%;
+        background:rgba(0,0,0,0.96);
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        gap:2em;
+        padding:0;
+        margin:0;
+        transform:translateY(-100%);
+        transition:transform 0.6s cubic-bezier(0.77,0,0.175,1);
+    }
+
+    nav ul.active {
+        transform:translateY(0);
+    }
+
+    nav ul li {
+        opacity:0;
+        transform:translateY(30px);
+        animation: navItemFade 0.6s ease forwards;
+    }
+
+    nav ul.active li:nth-child(1) { animation-delay:0.15s; }
+    nav ul.active li:nth-child(2) { animation-delay:0.25s; }
+    nav ul.active li:nth-child(3) { animation-delay:0.35s; }
+    nav ul.active li:nth-child(4) { animation-delay:0.45s; }
+    nav ul.active li:nth-child(5) { animation-delay:0.55s; }
+    nav ul.active li:nth-child(6) { animation-delay:0.65s; }
+    nav ul.active li:nth-child(7) { animation-delay:0.75s; }
+
+    nav ul a {
+        font-size:1.4em;
+        letter-spacing:2px;
+        text-transform:uppercase;
+    }
+}
+
+/* Menu item animation */
+@keyframes navItemFade {
+    to {
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+
+/* Fix hamburger placement on mobile */
+@media (max-width:768px) {
+    .nav-inner {
+        justify-content: flex-start;
+    }
+
+    .menu-toggle {
+        position: relative;
+    }
+}
+
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top:0;
+    left:0;
+    opacity:0;
+    transition: opacity 0.3s;
+}
+
+.image-slider img.active {
+    opacity:1;
+}
+
+.image-slider .dots {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.image-slider .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.image-slider .dot.active {
+    opacity: 1;
+    background: #ff6347;
+}
+
+
+
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="menu-toggle" id="menuToggle">☰</div>
+
+    <ul id="navMenu">
+      <li><a href="index.html#hero">Home</a></li>
+      <li><a href="index.html#about">Philosophy</a></li>
+      <li><a href="index.html#merch">Merch</a></li>
+      <li><a href="index.html#gallery">Collection</a></li>
+      <li><a href="index.html#shop">Shop</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+      <li><a href="cart.html">Cart</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="shop-container">
+  <div class="shop-item">
+    <!-- Image slider -->
+    <div class="image-slider">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/75cc55e4f6ba4ec5a84fb27863cca6ff.png" alt="Front" class="active">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/34d15efa930a43f1a168f42635c449de.png?x-oss-process=style/hugepod-product-webp" alt="Back">
+        <div class="dots">
+            <span class="dot active"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+
+    <p>ELVT X HAMIDO TSHIRT</p>
+    <p>$?</p>
+
+    <div class="size-options">
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT X HAMIDO TSHIRT',
+        ?,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/75cc55e4f6ba4ec5a84fb27863cca6ff.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+</div>
+
+	<div class="shop-item">
+  <div class="image-slider">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/3fd962ce0c1440aaabcd1be5ac93b363.png?x-oss-process=style/hugepod-product-webp" alt="Front" class="active">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/24fd305157e84c0d834aa73387dadb3f.png?x-oss-process=style/hugepod-product-webp" alt="Back">
+      <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+      </div>
+  </div>
+	
+        <p>ELVT X HAMIDO JACKET</p>
+        <p>$?</p>
+
+    <div class="size-options">
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT X HAMIDO JACKET',
+        ?,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/3fd962ce0c1440aaabcd1be5ac93b363.png?x-oss-process=style/hugepod-product-webp',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div> 
+	
+	<div class="shop-item">
+	<div class="image-slider">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/235d85630c54454da9ba92f450a326c7.png" alt="Sportswear 1">
+		<img src="https://files.tapstitch.com/hugepod/material/custom_printing/7d1df8c0749c4d1693ca6d008bb711b9.png?x-oss-process=style/hugepod-product-webp" alt="Back">
+      <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+      </div>
+   </div>
+	
+        <p>ELVT X HAMIDO POLO TSHIRT</p>
+        <p>$?</p>
+
+    <div class="size-options">
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Snow Wash Hand-Frayed Heavyweight Hoodie',
+       ?,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/235d85630c54454da9ba92f450a326c7.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	
+	    <!-- Add more items as needed -->
+</section>
+
+<footer>
+    <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+</footer>
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+
+    document.querySelectorAll('.shop-item').forEach(item => {
+        const sizeButtons = item.querySelectorAll('.size-options button');
+
+        sizeButtons.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Clear active only for this product
+                sizeButtons.forEach(b => b.classList.remove('active'));
+
+                btn.classList.add('active');
+                item.dataset.size = btn.innerText;
+            });
+        });
+    });
+
+});
+
+function addToCart(name, price, image, item) {
+    const size = item.dataset.size;
+    if (!size) {
+        showToast("Please select a size");
+        return;
+    }
+
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    const existing = cart.find(p => p.name === name && p.size === size);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({ name, price, image, size, qty: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    showToast(`${name} added to cart`);
+}
+
+
+function showToast(message) {
+    const toast = document.getElementById('toast');
+    toast.innerText = message;
+    toast.style.opacity = '1';
+    toast.style.transform = 'translateY(0)';
+
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+    }, 2000); // disappears after 2 seconds
+}
+
+</script>
+
+<script>
+const toggle = document.getElementById("menuToggle");
+const menu = document.getElementById("navMenu");
+const body = document.body;
+
+toggle.addEventListener("click", () => {
+    menu.classList.toggle("active");
+    body.classList.toggle("nav-open");
+
+    toggle.textContent = menu.classList.contains("active") ? "✕" : "☰";
+
+    // reset animations when reopening
+    if (menu.classList.contains("active")) {
+        menu.querySelectorAll("li").forEach(li => {
+            li.style.animation = "none";
+            li.offsetHeight; // trigger reflow
+            li.style.animation = "";
+        });
+    }
+});
+
+menu.querySelectorAll("a").forEach(link => {
+    link.addEventListener("click", () => {
+        menu.classList.remove("active");
+        body.classList.remove("nav-open");
+        toggle.textContent = "☰";
+    });
+});
+
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            images[i].classList.add('active');
+            dot.classList.add('active');
+        });
+    });
+});
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+    let current = 0;
+    let interval;
+
+    function showImage(index) {
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+        current = index;
+    }
+
+    function startSlider() {
+        interval = setInterval(() => {
+            let next = (current + 1) % images.length;
+            showImage(next);
+        }, 3000);
+    }
+
+    function resetSlider() {
+        clearInterval(interval);
+        startSlider();
+    }
+
+    // Dot click
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            showImage(i);
+            resetSlider(); // resets the interval cleanly
+        });
+    });
+
+    startSlider(); // start the auto-slide
+});
+
+
+</script>
+
+
+<!-- Toast notification container -->
+<div id="toast" style="
+     position: fixed;
+    bottom: 2em;               /* distance from bottom */
+    left: 40%;                  /* slightly left of center */
+    background: #ff6347;
+    color: #fff;
+    padding: 1em 2em;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1em;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+    z-index: 9999;
+"></div>
+
+
+
+</body>
+</html>

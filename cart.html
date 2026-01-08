@@ -193,21 +193,21 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     <div id="cart-items"></div>
     <div class="total" id="cart-total"></div>
 
-    <!-- Order Form -->
-    <form id="order-form" action="https://formspree.io/f/xzzyzval" method="POST">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="tel" name="phone" placeholder="Your Phone Number" required>
-        <input type="email" name="email" placeholder="Your Email (optional)">
-        <input type="text" name="address" placeholder="Street Address" required>
-        <input type="text" name="city" placeholder="City" required>
-        <input type="text" name="zip" placeholder="ZIP / Postal Code" required>
-        <input type="text" name="country" placeholder="Country" required>
-        <textarea name="notes" placeholder="Additional notes or instructions"></textarea>
-        <input type="hidden" name="_subject" value="New ELVT Order">
-        <input type="hidden" name="_replyto" value="elvtbyadam@outlook.com">
-        <input type="hidden" name="cartDetails" id="cartDetails">
-       <button type="submit" id="place-order-btn">Place Order</button>
-    </form>
+  <button id="checkout-btn" style="
+  width:100%;
+  max-width:400px;
+  margin:2em auto;
+  padding:1em;
+  font-size:1.1em;
+  background:#ff6347;
+  color:#fff;
+  border:none;
+  cursor:pointer;
+  display:block;
+">
+  Pay Securely
+</button>
+
 
     <!-- Success Message (outside form so it stays visible) -->
     <p id="order-success" class="success-message">Your order was sent successfully! We will contact you shortly. Thank you!</p>
@@ -285,6 +285,7 @@ form.addEventListener('submit', function(event){
         return;
     }
 
+    // Build cart details for Formspree
     let cartText = cart.map(item => 
         `${item.name} | Size: ${item.size} | Qty: ${item.qty} | $${(item.price*item.qty).toFixed(2)}`
     ).join("\n");
@@ -301,10 +302,12 @@ form.addEventListener('submit', function(event){
     .then(response => {
         if(response.ok){
             successMsg.classList.add('show'); // show success message
-            cart = []; // clear in-memory cart
-            localStorage.removeItem('cart'); // clear storage
-            renderCart(); // update cart display
-            form.style.display = 'none'; // hide form
+            cart = []; // clear cart
+            localStorage.removeItem('cart');
+            renderCart();
+            form.style.display = 'none';
+
+           
         } else {
             alert('Error sending order.');
         }
@@ -313,6 +316,7 @@ form.addEventListener('submit', function(event){
         alert('Error sending order: ' + error);
     });
 });
+
 </script>
 
 <script>
@@ -344,6 +348,33 @@ menu.querySelectorAll("a").forEach(link => {
     });
 });
 </script>
+
+<script>
+document.getElementById("checkout-btn").addEventListener("click", async () => {
+
+    if (cart.length === 0) {
+        alert("Your cart is empty");
+        return;
+    }
+
+    const response = await fetch("https://YOUR-BACKEND-URL/create-checkout-session", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ cartItems: cart })
+    });
+
+    const data = await response.json();
+
+    if (data.url) {
+        window.location.href = data.url;
+    } else {
+        alert("Stripe error. Check server.");
+    }
+});
+</script>
+
 
 
 
