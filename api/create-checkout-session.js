@@ -26,8 +26,8 @@ export default async function handler(req, res) {
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
       line_items,
-      success_url: "https://elvt-website.vercel.app/success.html",
-      cancel_url: "https://elvt-website.vercel.app/cart.html"
+      success_url: "https://www.elvtbyadam.com/success.html",
+      cancel_url: "https://www.elvtbyadam.com/cart.html"
     });
 
     res.status(200).json({ url: session.url });
