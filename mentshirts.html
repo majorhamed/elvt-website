@@ -202,6 +202,53 @@ nav a:hover { color:#ff6347; }
   }
 }
 
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top:0;
+    left:0;
+    opacity:0;
+    transition: opacity 0.3s;
+}
+
+.image-slider img.active {
+    opacity:1;
+}
+
+.image-slider .dots {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.image-slider .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.image-slider .dot.active {
+    opacity: 1;
+    background: #ff6347;
+}
+
 
 </style>
 </head>
@@ -256,6 +303,81 @@ nav a:hover { color:#ff6347; }
     </div>
 	
 	<div class="shop-item">
+  <div class="image-slider">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/e43ea2647f9a4a879e85cd493f7bd973.png" alt="Front" class="active">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0f76df95ef0f46fe9463e71be7433d27.png" alt="Back">
+      <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+      </div>
+  </div>
+	
+        <p>ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+		<button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/e43ea2647f9a4a879e85cd493f7bd973.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div> 
+	<div class="shop-item">
+  <div class="image-slider">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/5c04b1d2dc97447c9bb1dfcfd9c45ffd.png" alt="Front" class="active">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/9261afcd25a34896844c57d018be5339.png" alt="Back">
+      <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+      </div>
+  </div>
+	
+        <p>ELVT Vintage Wash Boxy Distressed Hem T-Shirt ( HIGHER THAN BEFORE )</p>
+        <p>$50</p>
+
+    <div class="size-options">
+        <button>S</button>
+		<button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Vintage Wash Boxy Distressed Hem T-Shirt ( HIGHER THAN BEFORE )',
+        50,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/5c04b1d2dc97447c9bb1dfcfd9c45ffd.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div> 
+	
+	<div class="shop-item">
         <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0ce9baebd1f448cc8d481c35c2873e63.png" alt="Sportswear 1">
         <p>ELVT Snow Wash Raw-Hem Boxy T-shirt</p>
         <p>$40</p>
@@ -285,65 +407,7 @@ nav a:hover { color:#ff6347; }
     </button>
     </div>
 	
-	<div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/814e94874a6940d581b4c30e33fe1e66.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
-        <p>ELVT Contrast Panel Cotton T-Shirt BLACK</p>
-        <p>$45</p>
-
-    <div class="size-options">
-        <button>S</button>
-        <button>M</button>
-        <button>L</button>
-        <button>XL</button>
-    </div>
-
-    <button onclick="addToCart(
-        'ELVT Contrast Panel Cotton T-Shirt BLACK',
-        45,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/814e94874a6940d581b4c30e33fe1e66.png?x-oss-process=style/hugepod-product-webp',
-        this.closest('.shop-item')
-    )" style="
-        width:100%;
-        padding:0.8em;
-        background:#ff6347;
-        border:none;
-        color:#fff;
-        cursor:pointer;
-        font-weight:500;
-    ">
-        Add to Cart
-    </button>
-	</div>
- 	
-	<div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/9d1eb9bd55994e96b63f3cd279903abf.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
-        <p>ELVT Contrast Panel Cotton T-Shirt CAMEL</p>
-        <p>$45</p>
-
-    <div class="size-options">
-        <button>S</button>
-        <button>M</button>
-        <button>L</button>
-        <button>XL</button>
-    </div>
-
-    <button onclick="addToCart(
-        'ELVT Contrast Panel Cotton T-Shirt CAMEL',
-        45,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/9d1eb9bd55994e96b63f3cd279903abf.png?x-oss-process=style/hugepod-product-webp',
-        this.closest('.shop-item')
-    )" style="
-        width:100%;
-        padding:0.8em;
-        background:#ff6347;
-        border:none;
-        color:#fff;
-        cursor:pointer;
-        font-weight:500;
-    ">
-        Add to Cart
-    </button>	
-    </div>
+	
 	<div class="shop-item">
         <img src="https://files.tapstitch.com/hugepod/material/custom_printing/b6dda144100f474f8591a66c865831a9.png?x-oss-process=style/hugepod-product-webp" alt="Sportswear 1">
         <p>ELVT Contrast Panel Cotton T-Shirt RED</p>
@@ -522,6 +586,62 @@ menu.querySelectorAll("a").forEach(link => {
         toggle.textContent = "☰";
     });
 });
+
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            images[i].classList.add('active');
+            dot.classList.add('active');
+        });
+    });
+});
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+    let current = 0;
+    let interval;
+
+    function showImage(index) {
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+        current = index;
+    }
+
+    function startSlider() {
+        interval = setInterval(() => {
+            let next = (current + 1) % images.length;
+            showImage(next);
+        }, 3000);
+    }
+
+    function resetSlider() {
+        clearInterval(interval);
+        startSlider();
+    }
+
+    // Dot click
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            showImage(i);
+            resetSlider(); // resets the interval cleanly
+        });
+    });
+
+    startSlider(); // start the auto-slide
+});
+
+
 </script>
 
 

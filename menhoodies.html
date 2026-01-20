@@ -203,6 +203,54 @@ nav a:hover { color:#ff6347; }
 }
 
 
+.image-slider {
+    position: relative;
+    width: 100%;
+    height: 320px;
+    overflow: hidden;
+    border-radius: 12px;
+}
+
+.image-slider img {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    top:0;
+    left:0;
+    opacity:0;
+    transition: opacity 0.3s;
+}
+
+.image-slider img.active {
+    opacity:1;
+}
+
+.image-slider .dots {
+    position: absolute;
+    bottom: 8px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5em;
+}
+
+.image-slider .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: #fff;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: opacity 0.3s;
+}
+
+.image-slider .dot.active {
+    opacity: 1;
+    background: #ff6347;
+}
+
+
 
 </style>
 </head>
@@ -254,6 +302,74 @@ nav a:hover { color:#ff6347; }
         Add to Cart
     </button>
     </div>
+	
+	<div class="shop-item">
+        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/d1c218db5b3b47f0a239549e30b8d23e.png" alt="Sportswear 1">
+        <p>ELVT Snow Wash Hand-Frayed Heavyweight Hoodie</p>
+        <p>$60</p>
+
+    <div class="size-options">
+        <button>S</button>
+        <button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Snow Wash Hand-Frayed Heavyweight Hoodie',
+        60,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/d1c218db5b3b47f0a239549e30b8d23e.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+    </div>
+	
+	<div class="shop-item">
+  <div class="image-slider">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/1c2ad74f8f0c417ba8a4ec7319ec0cd9.png" alt="Front" class="active">
+      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/da45fd178fc1440693a2dccc703df0ff.png" alt="Back">
+      <div class="dots">
+          <span class="dot active"></span>
+          <span class="dot"></span>
+      </div>
+  </div>
+	
+        <p>ELVT Snow Wash Fleece Oversize Hoodie ( WE DONT FOLLOW LEVELS WE CREATE THEM )</p>
+        <p>$65</p>
+
+    <div class="size-options">
+        <button>S</button>
+		<button>M</button>
+        <button>L</button>
+        <button>XL</button>
+    </div>
+
+    <button onclick="addToCart(
+        'ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )',
+        65,
+        'https://files.tapstitch.com/hugepod/material/custom_printing/1c2ad74f8f0c417ba8a4ec7319ec0cd9.png',
+        this.closest('.shop-item')
+    )" style="
+        width:100%;
+        padding:0.8em;
+        background:#ff6347;
+        border:none;
+        color:#fff;
+        cursor:pointer;
+        font-weight:500;
+    ">
+        Add to Cart
+    </button>
+	</div> 
 	
 	<div class="shop-item">
         <img src="https://files.tapstitch.com/hugepod/material/custom_printing/e272073602f44ccbb81b39b369ede88c.png" alt="Sportswear 1">
@@ -493,6 +609,90 @@ menu.querySelectorAll("a").forEach(link => {
         toggle.textContent = "☰";
     });
 });
+
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            images.forEach(img => img.classList.remove('active'));
+            dots.forEach(d => d.classList.remove('active'));
+
+            images[i].classList.add('active');
+            dot.classList.add('active');
+        });
+    });
+});
+
+document.querySelectorAll('.image-slider').forEach(slider => {
+    const images = slider.querySelectorAll('img');
+    const dots = slider.querySelectorAll('.dot');
+    let current = 0;
+    let interval;
+
+    function showImage(index) {
+        images.forEach(img => img.classList.remove('active'));
+        dots.forEach(dot => dot.classList.remove('active'));
+
+        images[index].classList.add('active');
+        dots[index].classList.add('active');
+        current = index;
+    }
+
+    function startSlider() {
+        interval = setInterval(() => {
+            let next = (current + 1) % images.length;
+            showImage(next);
+        }, 3000);
+    }
+
+    function resetSlider() {
+        clearInterval(interval);
+        startSlider();
+    }
+
+    // Dot click
+    dots.forEach((dot, i) => {
+        dot.addEventListener('click', () => {
+            showImage(i);
+            resetSlider(); // resets the interval cleanly
+        });
+    });
+
+    startSlider(); // start the auto-slide
+});
+
+
+</script>
+
+
+<script>
+function updateCartBadge(){
+  const badge = document.getElementById("cartBadge");
+  if(!badge) return;
+
+  const cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
+
+  if(totalQty > 0){
+    badge.style.display = "flex";
+    badge.textContent = totalQty;
+  } else {
+    badge.style.display = "none";
+  }
+}
+
+/* run on load */
+document.addEventListener("DOMContentLoaded", updateCartBadge);
+
+/* update badge whenever user adds to cart */
+const originalAddToCart = window.addToCart;
+window.addToCart = function(name, price, image, item){
+  originalAddToCart(name, price, image, item);
+  updateCartBadge();
+};
 </script>
 
 <script>
