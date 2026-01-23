@@ -165,12 +165,48 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     .cart-item { flex-direction:column; align-items:flex-start; }
     .cart-actions { width:100%; text-align:left; margin-top:10px; }
 }
+
+/* Back button */
+.back-btn{
+    position:fixed;
+    top:80px; /* below navbar */
+    left:20px;
+    z-index:900;
+    padding:0.6em 1.2em;
+    background:rgba(0,0,0,0.75);
+    color:#fff;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:999px;
+    font-size:0.9em;
+    letter-spacing:1px;
+    text-decoration:none;
+    backdrop-filter:blur(8px);
+    transition:all 0.3s ease;
+}
+
+.back-btn:hover{
+    background:#ff6347;
+    border-color:#ff6347;
+}
+
+/* Mobile adjustment */
+@media (max-width:768px){
+    .back-btn{
+        top:70px;
+        left:14px;
+        font-size:0.85em;
+    }
+}
+
 </style>
 </head>
 <body>
 
 <!-- Navbar -->
 <nav>
+
+<a href="gender.html" class="back-btn">← Back</a>
+
   <div class="nav-inner">
     <div class="menu-toggle" id="menuToggle">☰</div>
 
