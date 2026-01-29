@@ -470,6 +470,30 @@ html, body {
   }
 }
 
+/* ===== HERO SLIDER – FRAME FITS IMAGE (MOBILE) ===== */
+@media (max-width:768px){
+
+  .hero-slide{
+    width: 220px;
+    height: auto;           /* 🔑 frame wraps image */
+    padding: 0;
+    margin: 0;
+    background: rgba(255,255,255,0.06);
+    border-radius: 16px;
+    border: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
+  }
+
+  .hero-slide img{
+    display: block;         /* 🔑 removes inline gap */
+    width: 100%;
+    height: auto;           /* 🔑 natural image height */
+    object-fit: initial;    /* 🔑 no forced scaling */
+    margin: 0;
+    padding: 0;
+  }
+}
+
 
 
 
