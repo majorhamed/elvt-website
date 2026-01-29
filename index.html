@@ -436,42 +436,37 @@ html, body {
     filter: contrast(1.15) brightness(1);
 }
 
-/* Mobile */
+/* ===== HERO SLIDER – MOBILE PERFECT FIT ===== */
 @media (max-width:768px){
-    .hero-sliderbar{ padding: 1.1rem 0; }
-    .hero-slider-viewport{ padding: 0 18px; }
-    .hero-slider-track{ gap: 18px; }
-    .hero-slide{
-        width: 200px;
-        height: 130px;
-        border-radius: 14px;
-    }
-}
-
-/* Mobile hero slider: make tiles taller + fit product images better */
-@media (max-width:768px){
-  .hero-sliderbar{ padding: 1.1rem 0; }
-  .hero-slider-viewport{ padding: 0 18px; }
-  .hero-slider-track{ gap: 16px; }
 
   .hero-slide{
-    width: 210px;
-    height: 190px;              /* ⬅️ taller so products don't look tiny */
-    border-radius: 14px;
+    width: 220px;
+    height: auto;                 /* 🔑 let height adapt */
+    aspect-ratio: 3 / 4;          /* 🔑 product-friendly ratio */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background: rgba(255,255,255,0.06);
+    border-radius: 16px;
     border: 1px solid rgba(255,255,255,0.12);
+    overflow: hidden;
   }
 
   .hero-slide img{
-    object-fit: contain;         /* ⬅️ show the full product */
+    width: 100%;
+    height: 100%;
+    object-fit: contain;          /* 🔑 full product always visible */
     object-position: center;
-    padding: 10px;               /* breathing room */
-    filter: contrast(1.08) brightness(0.98);
-    transform: none;             /* prevents weird zoom feeling */
+
+    padding: 0;                   /* ❌ remove padding */
+    margin: 0;
+    transform: none;
+    filter: none;
   }
 
   .hero-slide:hover img{
-    transform: none;             /* no hover zoom on mobile */
+    transform: none;              /* no fake zoom on mobile */
   }
 }
 
