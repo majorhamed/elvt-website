@@ -92,7 +92,7 @@ nav ul {
 #hero::before {
     content: '';
     position: absolute;
-    top: 50%;
+    top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 120vw;             /* slightly larger than viewport */
@@ -114,11 +114,13 @@ nav ul {
     z-index: 1;
 }
 
-.hero-content {
+.hero-content{
     position: relative;
     z-index: 2;
+    margin-top: -300px;     /* ⬆️ moves text upward */
     animation: fadeIn 2s ease-in-out;
 }
+
 
 /* Hero text */
 #hero h1 {
@@ -371,6 +373,81 @@ html, body {
     }
 }
 
+/* ===== HERO BOTTOM BRAND SLIDER (SMOOTH DRAG + LOOP) ===== */
+.hero-sliderbar{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    z-index:3;
+    padding: 1.6rem 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.9), rgba(0,0,0,0));
+    backdrop-filter: blur(12px);
+    border-top: 1px solid rgba(255,255,255,0.1);
+    overflow:hidden;
+}
+
+.hero-slider-viewport{
+    overflow:hidden;              /* important: no native scroll */
+    touch-action: pan-y;          /* allow vertical page scroll, block horizontal browser gestures */
+    cursor: grab;
+    user-select: none;
+    padding: 0 28px;
+}
+
+.hero-slider-track{
+    display:flex;
+    align-items:center;
+    gap: 28px;
+    width: max-content;
+    will-change: transform;
+    transform: translate3d(0,0,0);
+}
+
+/* BIG tiles */
+.hero-slide{
+    width: 280px;
+    height: 250px;
+    border-radius: 18px;
+    overflow:hidden;
+    flex: 0 0 auto;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    box-shadow: 0 14px 40px rgba(0,0,0,0.55);
+}
+
+.hero-slide img{
+    width:100%;
+    height:100%;
+    object-fit: cover;
+    display:block;
+
+    /* 🔥 stops the “image gets taken out” problem */
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: none;
+
+    filter: contrast(1.08) brightness(0.95);
+    transition: transform 0.5s ease, filter 0.5s ease;
+}
+
+.hero-slide:hover img{
+    transform: scale(1.08);
+    filter: contrast(1.15) brightness(1);
+}
+
+/* Mobile */
+@media (max-width:768px){
+    .hero-sliderbar{ padding: 1.1rem 0; }
+    .hero-slider-viewport{ padding: 0 18px; }
+    .hero-slider-track{ gap: 18px; }
+    .hero-slide{
+        width: 200px;
+        height: 130px;
+        border-radius: 14px;
+    }
+}
+
 
 
 
@@ -412,6 +489,49 @@ html, body {
         <p class="hero-tagline">Elevate your wardrobe</p>
         <a href="https://www.instagram.com/elvt.by.adam/" target="_blank" class="btn">Discover More</a>
     </div>
+	
+	<!-- HERO BOTTOM SLIDING BRAND BAR -->
+<div class="hero-sliderbar" aria-label="ELVT brand slider">
+  <div class="hero-slider-viewport" id="heroSliderViewport">
+    <div class="hero-slider-track" id="heroSliderTrack">
+    <!-- Set A -->
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/1c2ad74f8f0c417ba8a4ec7319ec0cd9.png" alt="ELVT item 1"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/5d552f63b10f49278fff538c85bba360.png" alt="ELVT item 2"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/152bff5bc4e645a49b397f88ddda1e3b.png" alt="ELVT item 3"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/e94e8a1266a14656a0e3f48964149257.png" alt="ELVT item 4"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/bc9cf6f307e6424186674ce7915e4474.png" alt="ELVT item 5"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/df488f4726a242bbb180c656bb82496e.png" alt="ELVT item 6"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/c3433d0146e3496889a2cd9e666cbb20.png" alt="ELVT item 7"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png" alt="ELVT item 2"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/8e7e753dda5f4e9a82a60faffa5c7680.png" alt="ELVT item 1"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/1a08c6347ef6442ca337563039291eb4.png" alt="ELVT item 3"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/731c9f4bc1c34172997a526f1a822c77.png" alt="ELVT item 4"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png" alt="ELVT item 5"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/372ee6ca173d40eeae2538de06f96469.png" alt="ELVT item 6"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/edd45fcb20cb408a93a71f1620a7d1cc.png" alt="ELVT item 7"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/115f4588dbc94f63bf610b2a4038cca9.png" alt="ELVT item 8"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/material/style/item_image/image-RK0033%20(1)-v1761277794.jpg" alt="ELVT item 9"></div>
+
+    <!-- Set B (duplicate for seamless loop) -->
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/1c2ad74f8f0c417ba8a4ec7319ec0cd9.png" alt="ELVT item 1"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/5d552f63b10f49278fff538c85bba360.png" alt="ELVT item 2"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/152bff5bc4e645a49b397f88ddda1e3b.png" alt="ELVT item 3"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/e94e8a1266a14656a0e3f48964149257.png" alt="ELVT item 4"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/bc9cf6f307e6424186674ce7915e4474.png" alt="ELVT item 5"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/df488f4726a242bbb180c656bb82496e.png" alt="ELVT item 6"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/c3433d0146e3496889a2cd9e666cbb20.png" alt="ELVT item 7"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png" alt="ELVT item 2"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/8e7e753dda5f4e9a82a60faffa5c7680.png" alt="ELVT item 1"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/1a08c6347ef6442ca337563039291eb4.png" alt="ELVT item 3"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/731c9f4bc1c34172997a526f1a822c77.png" alt="ELVT item 4"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/f7d2d4ed6d4c4d76a2cda9abe1ae7058.png" alt="ELVT item 5"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/372ee6ca173d40eeae2538de06f96469.png" alt="ELVT item 6"></div>
+    <div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/edd45fcb20cb408a93a71f1620a7d1cc.png" alt="ELVT item 7"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/hugepod/material/custom_printing/115f4588dbc94f63bf610b2a4038cca9.png" alt="ELVT item 8"></div>
+	<div class="hero-slide"><img draggable="false" src="https://ajmall-vc-public-bucket.oss-us-west-1.aliyuncs.com/material/style/item_image/image-RK0033%20(1)-v1761277794.jpg" alt="ELVT item 9"></div>
+  </div>
+</div>
+
 </section>
 
 <!-- About -->
@@ -532,6 +652,110 @@ menu.querySelectorAll("a").forEach(link => {
     });
 });
 </script>
+
+<script>
+(() => {
+  const viewport = document.getElementById("heroSliderViewport");
+  const track = document.getElementById("heroSliderTrack");
+  if (!viewport || !track) return;
+
+  // Stop default drag behavior globally in slider area
+  viewport.addEventListener("dragstart", (e) => e.preventDefault());
+
+  let isDown = false;
+  let startX = 0;
+
+  // Position + velocity for smooth movement
+  let x = 0;
+  let v = 0;
+
+  // Auto movement when not dragging
+  let auto = true;
+  const autoSpeed = 0.55;   // speed per frame (tune)
+  const friction = 0.92;    // inertia friction (tune)
+  const dragPower = 1.15;   // drag sensitivity (tune)
+
+  // We duplicated slides (A + B). Half of track width is one full set.
+  const getSetWidth = () => track.scrollWidth / 2;
+
+  function wrap() {
+    const setW = getSetWidth();
+    if (!setW) return;
+
+    // keep x in [-setW, 0) range for seamless looping
+    x = ((x % setW) + setW) % setW; // [0, setW)
+    x = -x;                         // convert to negative translation
+  }
+
+  // Better: keep x continuous and wrap manually
+  function wrapContinuous() {
+    const setW = getSetWidth();
+    if (!setW) return;
+
+    // x is negative translate value; wrap it around set width
+    if (x <= -setW) x += setW;
+    if (x >= 0) x -= setW;
+  }
+
+  // Pointer events
+  viewport.addEventListener("pointerdown", (e) => {
+    isDown = true;
+    auto = false;
+    viewport.setPointerCapture(e.pointerId);
+    viewport.style.cursor = "grabbing";
+    startX = e.clientX;
+  });
+
+  viewport.addEventListener("pointermove", (e) => {
+    if (!isDown) return;
+    const dx = (e.clientX - startX) * dragPower;
+    startX = e.clientX;
+
+    x += dx;           // move track with pointer
+    v = dx;            // store velocity for inertia
+    wrapContinuous();
+  });
+
+  function endDrag() {
+    isDown = false;
+    viewport.style.cursor = "grab";
+    // resume auto after a moment
+    setTimeout(() => (auto = true), 700);
+  }
+
+  viewport.addEventListener("pointerup", endDrag);
+  viewport.addEventListener("pointercancel", endDrag);
+  viewport.addEventListener("mouseleave", endDrag);
+
+  // Animation loop (smooth)
+  function tick() {
+    if (auto && !isDown) {
+      x -= autoSpeed;
+      v = -autoSpeed;
+      wrapContinuous();
+    } else if (!isDown) {
+      // inertia
+      x += v;
+      v *= friction;
+      if (Math.abs(v) < 0.02) v = 0;
+      wrapContinuous();
+    }
+
+    track.style.transform = `translate3d(${x}px,0,0)`;
+    requestAnimationFrame(tick);
+  }
+
+  // Wait for images to load so widths are correct
+  window.addEventListener("load", () => {
+    // Start the track “in the middle” of the loop
+    const setW = getSetWidth();
+    x = -Math.max(1, setW * 0.25);
+    requestAnimationFrame(tick);
+  });
+})();
+</script>
+
+
 
 
 
