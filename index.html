@@ -448,6 +448,33 @@ html, body {
     }
 }
 
+/* Mobile hero slider: make tiles taller + fit product images better */
+@media (max-width:768px){
+  .hero-sliderbar{ padding: 1.1rem 0; }
+  .hero-slider-viewport{ padding: 0 18px; }
+  .hero-slider-track{ gap: 16px; }
+
+  .hero-slide{
+    width: 210px;
+    height: 190px;              /* ⬅️ taller so products don't look tiny */
+    border-radius: 14px;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+  }
+
+  .hero-slide img{
+    object-fit: contain;         /* ⬅️ show the full product */
+    object-position: center;
+    padding: 10px;               /* breathing room */
+    filter: contrast(1.08) brightness(0.98);
+    transform: none;             /* prevents weird zoom feeling */
+  }
+
+  .hero-slide:hover img{
+    transform: none;             /* no hover zoom on mobile */
+  }
+}
+
 
 
 
