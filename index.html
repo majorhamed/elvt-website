@@ -436,39 +436,7 @@ html, body {
     filter: contrast(1.15) brightness(1);
 }
 
-/* ===== HERO SLIDER – MOBILE PERFECT FIT ===== */
-@media (max-width:768px){
 
-  .hero-slide{
-    width: 220px;
-    height: auto;                 /* 🔑 let height adapt */
-    aspect-ratio: 3 / 4;          /* 🔑 product-friendly ratio */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: rgba(255,255,255,0.06);
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.12);
-    overflow: hidden;
-  }
-
-  .hero-slide img{
-    width: 100%;
-    height: 100%;
-    object-fit: contain;          /* 🔑 full product always visible */
-    object-position: center;
-
-    padding: 0;                   /* ❌ remove padding */
-    margin: 0;
-    transform: none;
-    filter: none;
-  }
-
-  .hero-slide:hover img{
-    transform: none;              /* no fake zoom on mobile */
-  }
-}
 
 /* ===== HERO SLIDER – FRAME FITS IMAGE (MOBILE) ===== */
 @media (max-width:768px){
