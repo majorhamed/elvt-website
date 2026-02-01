@@ -462,6 +462,45 @@ html, body {
   }
 }
 
+/* ===== Payment Methods (FULL COLOR) ===== */
+.payment-methods {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.8em;
+    padding: 2em 1em;
+    background: #000;
+    border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+.payment-methods img {
+    height: 30px;
+    width: auto;
+    opacity: 1;           /* FULL visibility */
+    filter: none;         /* NO grayscale */
+    transition: transform 0.3s ease;
+}
+
+.payment-methods img:hover {
+    transform: scale(1.08);
+}
+
+/* Mobile sizing */
+@media (max-width:768px) {
+    .payment-methods img {
+        height: 26px;
+    }
+}
+
+/* Slightly bigger Apple Pay logo */
+.payment-methods img[alt="Apple Pay"] {
+    height: 50px;   /* others are ~30px */
+}
+
+/* Slightly smaller Visa Pay logo */
+.payment-methods img[alt="Visa"] {
+    height: 22px;   /* others are ~30px */
+}
 
 
 
@@ -605,6 +644,17 @@ html, body {
         </a>
     </div>
     <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+	
+<div class="payment-methods">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+    <img src="images/apple.png" alt="Apple Pay">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg" alt="Klarna">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="American Express">
+</div>
+
+
 </footer>
 
 <script>
