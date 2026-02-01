@@ -485,12 +485,28 @@ html, body {
     transform: scale(1.08);
 }
 
-/* Mobile sizing */
-@media (max-width:768px) {
-    .payment-methods img {
-        height: 26px;
-    }
+@media (max-width:768px){
+  .payment-methods{
+    gap: 10px;
+    padding: 1.2em 0.8em;
+  }
+
+  .payment-methods img{
+    height: 22px;
+    max-width: 26vw;
+  }
+
+  /* keep apple pay balanced (not huge) */
+  .payment-methods img[alt="Apple Pay"]{
+    height: 26px;
+  }
+
+  /* visa slightly smaller still */
+  .payment-methods img[alt="Visa"]{
+    height: 18px;
+  }
 }
+
 
 /* Slightly bigger Apple Pay logo */
 .payment-methods img[alt="Apple Pay"] {
@@ -644,6 +660,8 @@ html, body {
         </a>
     </div>
     <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
+	
+	
 	
 <div class="payment-methods">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
