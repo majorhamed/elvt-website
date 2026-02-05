@@ -10,50 +10,56 @@
 const INVENTORY = {
 
   /* ===== JERSEYS ===== */
-  "ELVT Retro Jersey Lebanon Beige": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Retro Jersey Lebanon White": { S: 3, M: 3, L: 2, XL: 0 },
+  "ELVT Retro Jersey Lebanon Beige": { S: 0, M: 0, L: 3, XL: 2 },
+  "ELVT Retro Jersey Lebanon White": { S: 0, M: 2, L: 2, XL: 2 },
 
-  /* ===== SHORTS ===== */
-  "ELVT Mesh Drawstring Shorts BLACK": { S: 5, M: 5, L: 5, XL: 5 },
-  "ELVT Mesh Drawstring Shorts GRAY": { S: 5, M: 0, L: 3, XL: 1 },
+   /* ===== SHORTS ===== */
+  "ELVT Mesh Drawstring Shorts BLACK": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Mesh Drawstring Shorts GRAY": { S: 1, M: 1, L: 1, XL: 1 },
+
+  "ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White": { S: 1, M: 1, L: 1, XL: 1 },
+
+  "ELVT Side-Stripe Performance Shorts": { S: 1, M: 1, L: 1, XL: 1 },
+
 
   /* ===== T-SHIRTS ===== */
-  "ELVT Contrast Piped Panel T-Shirt": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Vintage Wash Boxy Distressed Hem T-Shirt ( HIGHER THAN BEFORE )": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Wash Raw-Hem Boxy T-shirt": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Contrast Panel Cotton T-Shirt RED": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Contrast Panel Cotton T-Shirt NAVY BLUE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Contrast Panel Cotton T-Shirt GRAY COFFEE": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Contrast Piped Panel T-Shirt": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Vintage Wash Boxy Distressed Hem T-Shirt ( HIGHER THAN BEFORE )": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Wash Raw-Hem Boxy T-shirt": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Contrast Panel Cotton T-Shirt RED": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Contrast Panel Cotton T-Shirt NAVY BLUE": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Contrast Panel Cotton T-Shirt GRAY COFFEE": { S: 0, M: 1, L: 1, XL: 1 },
 
   /* ===== HOODIES ===== */
-  "ELVT Contrast-Stitched Boxy Fleece Hoodie": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Wash Hand-Frayed Heavyweight Hoodie": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Wash Fleece Oversize Hoodie ( WE DONT FOLLOW LEVELS WE CREATE THEM )": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Vintage Washed Frayed-Hem Hoodie": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Essential Heavyweight Hoodie BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Essential Heavyweight Hoodie DULL RED": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Essential Heavyweight Hoodie CAMEL": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Contrast-Stitched Boxy Fleece Hoodie": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Wash Hand-Frayed Heavyweight Hoodie": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Wash Fleece Oversize Hoodie ( WE DONT FOLLOW LEVELS WE CREATE THEM )": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Vintage Washed Frayed-Hem Hoodie": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Essential Heavyweight Hoodie BLACK": { S: 0, M: 1, L: 0, XL: 1 },
+  "ELVT Essential Heavyweight Hoodie DULL RED": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Essential Heavyweight Hoodie CAMEL": { S: 0, M: 1, L: 1, XL: 1 },
 
   /* ===== SWEATPANTS ===== */
-  "ELVT Reflection Striped Straight-Leg Sweatpants BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Reflection Striped Straight-Leg Sweatpants DARK GRAY": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Reflection Striped Straight-Leg Sweatpants BLACK": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Reflection Striped Straight-Leg Sweatpants DARK GRAY": { S: 0, M: 1, L: 1, XL: 1 },
   "ELVT Essential Drawstring Jogged Sweatpants": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Contrast-Stitched Fleece Sweatpants ( BLACK )": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Contrast-Stitched Fleece Sweatpants ( GRAY )": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants COFFEE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants DARK GRAY": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Contrast-Stitched Fleece Sweatpants ( BLACK )": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Contrast-Stitched Fleece Sweatpants ( GRAY )": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants BLACK": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants COFFEE": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Vintage Washed Gradient Straight-Leg Sweatpants DARK GRAY": { S: 0, M: 1, L: 1, XL: 1 },
 
   /* ===== ACTIVEWEAR / PERFORMANCE ===== */
-  "ELVT DRIFIT TEE BLUE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT DRIFIT TEE GREEN": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT DRIFIT TEE RED": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Soft Hooded Sports Jacket BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Soft Hooded Sports Jacket WHITE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Performance Short Sleeve T-Shirt BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Performance Short Sleeve T-Shirt WHITE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Performance Short Sleeve T-Shirt GRAY": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT DRIFIT TEE BLUE": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT DRIFIT TEE GREEN": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT DRIFIT TEE RED": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Soft Hooded Sports Jacket BLACK": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Soft Hooded Sports Jacket WHITE": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Performance Short Sleeve T-Shirt BLACK": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Performance Short Sleeve T-Shirt WHITE": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Performance Short Sleeve T-Shirt GRAY": { S: 1, M: 1, L: 1, XL: 1 },
 
 
 
@@ -66,34 +72,34 @@ const INVENTORY = {
 
 
   /* ===== WOMEN T-SHIRTS ===== */
-  "ELVT Vintage Wash Drop Shoulder T-shirt": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Taped Cooling Performance Crop Top": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Washed Tank Top BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Washed Tank Top WHITE": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Vintage Wash Drop Shoulder T-shirt": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Taped Cooling Performance Crop Top": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Washed Tank Top BLACK": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Washed Tank Top WHITE": { S: 1, M: 1, L: 1, XL: 1 },
 
   /* ===== CROPPED HOODIES / SWEATSHIRTS ===== */
-  "ELVT Cropped Half-Zip Hoodie COFFEE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Cropped Half-Zip Hoodie APRICOT": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Cropped Half-Zip Hoodie COOL GRAY": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Cropped Half-Zip Sweatshirt BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Cropped Half-Zip Sweatshirt LIGHT GRAY": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Cropped Half-Zip Sweatshirt APRICOT": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Cropped Half-Zip Hoodie COFFEE": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Cropped Half-Zip Hoodie APRICOT": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Cropped Half-Zip Hoodie COOL GRAY": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Cropped Half-Zip Sweatshirt BLACK": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Cropped Half-Zip Sweatshirt LIGHT GRAY": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Cropped Half-Zip Sweatshirt APRICOT": { S: 1, M: 1, L: 1, XL: 0 },
   "ELVT Cropped Half-Zip Sweatshirt GRAY": { S: 0, M: 0, L: 0, XL: 0 },
 
   /* ===== CROP TOPS ===== */
-  "ELVT Ruched Bodycon Crop Top BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Ruched Bodycon Crop Top BEIGE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Ruched Bodycon Crop Top BROWN": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Ruched Bodycon Crop Top BLACK": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Ruched Bodycon Crop Top BEIGE": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Ruched Bodycon Crop Top BROWN": { S: 1, M: 1, L: 1, XL: 0 },
 
   /* ===== CROPPED HOODIES (ESSENTIAL) ===== */
-  "ELVT Essential Cropped Hoodie": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Snow Washed Cropped Hoodie": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Essential Cropped Hoodie": { S: 1, M: 1, L: 1, XL: 1 },
+  "ELVT Snow Washed Cropped Hoodie": { S: 1, M: 1, L: 1, XL: 1 },
 
   /* ===== JOGGERS ===== */
-  "ELVT Jogger Pants COFFEE": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Jogger Pants APRICOT": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Essential Drawstring Straight-Leg Sweatpants BLACK": { S: 0, M: 0, L: 0, XL: 0 },
-  "ELVT Essential Drawstring Straight-Leg Sweatpants DARK REDDISH PURPLE": { S: 0, M: 0, L: 0, XL: 0 }
+  "ELVT Jogger Pants COFFEE": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Jogger Pants APRICOT": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Essential Drawstring Straight-Leg Sweatpants BLACK": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT Essential Drawstring Straight-Leg Sweatpants DARK REDDISH PURPLE": { S: 0, M: 1, L: 1, XL: 1 }
 
 };
 
