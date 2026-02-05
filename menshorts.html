@@ -234,6 +234,27 @@ nav a:hover { color:#ff6347; }
     }
 }
 
+/* ===== Inventory UI ===== */
+.stock-label{
+  text-align:center;
+  font-size:0.95em;
+  margin:-0.2em 0 0.8em;
+  opacity:0.9;
+}
+.stock-label.in { color:#4CAF50; }
+.stock-label.out { color:#999; }
+
+.size-options button.sold-out{
+  opacity:0.35;
+  cursor:not-allowed;
+  border-color:#333;
+}
+.size-options button.sold-out:hover{
+  background:#1a1a1a;
+  border-color:#333;
+}
+
+
 
 </style>
 </head>
@@ -417,58 +438,182 @@ nav a:hover { color:#ff6347; }
     <p>© 2025 ELVT. by Adam Hamed. All rights reserved.</p>
 </footer>
 <script>
+/* =========================
+   MANUAL INVENTORY (EDIT THIS)
+   ========================= */
+const INVENTORY = {
+  "ELVT Mesh Drawstring Shorts BLACK": { S: 0, M: 0, L: 0, XL: 0 },
+  "ELVT Mesh Drawstring Shorts GRAY":  { S: 5, M: 0, L: 3, XL: 1 },
+  "ELVT Unisex Heavyweight Fleece Loose Fit Shorts Bone": { S: 2, M: 2, L: 0, XL: 1 },
+  "ELVT Unisex Heavyweight Fleece Loose Fit Shorts Lucent White": { S: 1, M: 1, L: 1, XL: 0 },
+  "ELVT Side-Stripe Performance Shorts": { S: 10, M: 8, L: 6, XL: 4 }
+};
+
+/* Helper: get total stock for a product */
+function getTotalStock(productName){
+  const sizes = INVENTORY[productName];
+  if(!sizes) return 0;
+  return Object.values(sizes).reduce((sum, n) => sum + (Number(n) || 0), 0);
+}
+
+/* Helper: refresh UI for one product card */
+function applyInventoryToCard(card){
+  const productName = card.dataset.product;
+  const sizeButtons = card.querySelectorAll(".size-options button");
+  const stockEl = card.querySelector(".stock-label");
+
+  // If product not in inventory, treat as unlimited (or set all enabled)
+  if(!INVENTORY[productName]){
+    if(stockEl){
+      stockEl.textContent = "In Stock";
+      stockEl.className = "stock-label in";
+    }
+    sizeButtons.forEach(b => {
+      b.disabled = false;
+      b.classList.remove("sold-out");
+      b.textContent = b.dataset.size || b.textContent.trim();
+    });
+    return;
+  }
+
+  // Update stock label
+  const total = getTotalStock(productName);
+  if(stockEl){
+    stockEl.textContent = total > 0 ? "In Stock" : "Out of Stock";
+    stockEl.className = "stock-label " + (total > 0 ? "in" : "out");
+  }
+
+  // Disable sold-out sizes
+  sizeButtons.forEach(btn => {
+    const size = btn.dataset.size;
+    const qty = Number(INVENTORY[productName][size] || 0);
+
+    btn.classList.remove("sold-out");
+    btn.disabled = false;
+
+    // reset label text
+    btn.textContent = size;
+
+    if(qty <= 0){
+      btn.disabled = true;
+      btn.classList.add("sold-out");
+      btn.textContent = `${size} (Sold Out)`;
+      btn.classList.remove("active");
+
+      // if user had selected this size earlier, clear selection
+      if(card.dataset.size === size){
+        delete card.dataset.size;
+      }
+    }
+  });
+
+  // If total is 0, disable Add to Cart button
+  const addBtn = card.querySelector(".add-btn");
+  if(addBtn){
+    if(total <= 0){
+      addBtn.disabled = true;
+      addBtn.style.opacity = "0.5";
+      addBtn.style.cursor = "not-allowed";
+      addBtn.textContent = "Out of Stock";
+    }else{
+      addBtn.disabled = false;
+      addBtn.style.opacity = "1";
+      addBtn.style.cursor = "pointer";
+      addBtn.textContent = "Add to Cart";
+    }
+  }
+}
+
+/* Boot */
 document.addEventListener("DOMContentLoaded", () => {
+  // 1) Tag each card with its product name
+  document.querySelectorAll(".shop-item").forEach(card => {
+    const nameEl = card.querySelector("p"); // first <p> is name in your markup
+    const productName = nameEl ? nameEl.textContent.trim() : "";
+    card.dataset.product = productName;
 
-    document.querySelectorAll('.shop-item').forEach(item => {
-        const sizeButtons = item.querySelectorAll('.size-options button');
+    // 2) Add stock label under the price (after 2nd <p>)
+    const ps = card.querySelectorAll("p");
+    if(ps.length >= 2){
+      const label = document.createElement("div");
+      label.className = "stock-label";
+      label.textContent = "In Stock";
+      ps[1].insertAdjacentElement("afterend", label);
+    }
 
-        sizeButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                // Clear active only for this product
-                sizeButtons.forEach(b => b.classList.remove('active'));
+    // 3) Convert size buttons to include data-size and add click logic
+    const sizeButtons = card.querySelectorAll(".size-options button");
+    sizeButtons.forEach(btn => {
+      const size = btn.textContent.trim();
+      btn.dataset.size = size;
 
-                btn.classList.add('active');
-                item.dataset.size = btn.innerText;
-            });
-        });
+      btn.addEventListener("click", () => {
+        // ignore if disabled
+        if(btn.disabled) return;
+
+        // Clear active only for this product
+        sizeButtons.forEach(b => b.classList.remove("active"));
+
+        btn.classList.add("active");
+        card.dataset.size = size;
+      });
     });
 
+    // 4) Mark add-to-cart button so we can disable it
+    const addBtn = card.querySelector("button[onclick*='addToCart']");
+    if(addBtn) addBtn.classList.add("add-btn");
+
+    // 5) Apply inventory rules on load
+    applyInventoryToCard(card);
+  });
 });
 
-function addToCart(name, price, image, item) {
-    const size = item.dataset.size;
-    if (!size) {
-        showToast("Please select a size");
-        return;
+/* Add to Cart with inventory check */
+function addToCart(name, price, image, card) {
+  const size = card.dataset.size;
+  if (!size) {
+    showToast("Please select a size");
+    return;
+  }
+
+  // If inventory exists, block sold-out & decrement stock
+  if(INVENTORY[name]){
+    const current = Number(INVENTORY[name][size] || 0);
+    if(current <= 0){
+      showToast("Sorry, this size is sold out.");
+      applyInventoryToCard(card);
+      return;
     }
+    // decrement on add
+    INVENTORY[name][size] = current - 1;
+  }
 
-    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  let cart = JSON.parse(localStorage.getItem("cart")) || [];
+  const existing = cart.find(p => p.name === name && p.size === size);
 
-    const existing = cart.find(p => p.name === name && p.size === size);
-    if (existing) {
-        existing.qty += 1;
-    } else {
-        cart.push({ name, price, image, size, qty: 1 });
-    }
+  if (existing) existing.qty += 1;
+  else cart.push({ name, price, image, size, qty: 1 });
 
-    localStorage.setItem("cart", JSON.stringify(cart));
-    showToast(`${name} added to cart`);
+  localStorage.setItem("cart", JSON.stringify(cart));
+  showToast(`${name} (${size}) added to cart`);
+
+  // refresh UI after decrement
+  applyInventoryToCard(card);
 }
-
 
 function showToast(message) {
-    const toast = document.getElementById('toast');
-    toast.innerText = message;
-    toast.style.opacity = '1';
-    toast.style.transform = 'translateY(0)';
+  const toast = document.getElementById('toast');
+  toast.innerText = message;
+  toast.style.opacity = '1';
+  toast.style.transform = 'translateY(0)';
 
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        toast.style.transform = 'translateY(20px)';
-    }, 2000); // disappears after 2 seconds
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    toast.style.transform = 'translateY(20px)';
+  }, 2000);
 }
-
 </script>
+
 
 <script>
 const toggle = document.getElementById("menuToggle");
