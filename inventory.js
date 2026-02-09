@@ -52,6 +52,9 @@ const INVENTORY = {
   "ELVT Vintage Washed Gradient Straight-Leg Sweatpants DARK GRAY": { S: 0, M: 1, L: 1, XL: 1 },
 
   /* ===== ACTIVEWEAR / PERFORMANCE ===== */
+  "ELVT COMPRESSION WHITE": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT COMPRESSION GREEN": { S: 0, M: 1, L: 1, XL: 1 },
+  "ELVT COMPRESSION GRAY AND RED": { S: 0, M: 1, L: 1, XL: 1 },
   "ELVT DRIFIT TEE BLUE": { S: 0, M: 1, L: 1, XL: 1 },
   "ELVT DRIFIT TEE GREEN": { S: 0, M: 1, L: 1, XL: 1 },
   "ELVT DRIFIT TEE RED": { S: 0, M: 1, L: 1, XL: 1 },
