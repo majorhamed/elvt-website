@@ -150,6 +150,16 @@ nav ul {
     box-shadow: 0 5px 15px rgba(0,0,0,0.3);
 }
 
+#hero h1{
+    color:#ffffff;
+    text-shadow: 0 4px 12px rgba(0,0,0,0.8);
+}
+
+.hero-tagline{
+    color:#f5f5f5;
+    text-shadow: 0 3px 10px rgba(0,0,0,0.8);
+}
+
 /* ===== Animations ===== */
 @keyframes logoFadeIn {
     0% { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
@@ -178,25 +188,48 @@ nav ul {
 #gallery .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
 
 /* ===== Merch Section ===== */
-#merch {
-    padding:5em 2em;
+#merch{
+    position:relative;
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
     text-align:center;
-    background:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
-        url("images/merch-bg.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+
+    background:url("images/HTB.jpeg") center/cover no-repeat;
 }
 
-#merch h2 { font-family:'Playfair Display', serif; font-size:2em; font-weight:700; margin-bottom:0.5em; }
-#merch .divider { width:80px; height:3px; background:linear-gradient(to right,#ff6347,#b76e79); margin:0 auto 1.5em; border-radius:2px; }
-.merch-container { display:flex; flex-wrap:wrap; justify-content:center; gap:1.5em; margin-top:2em; }
-.merch-item { width:250px; height:250px; overflow:hidden; border-radius:10px; }
-.merch-item img { width:100%; height:100%; object-fit:cover; transition: transform 0.4s, filter 0.4s; }
-.merch-item:hover img { transform:scale(1.08); filter:brightness(1.1); }
-#merch .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
-#merch .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
+/* dark overlay */
+#merch::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    z-index:1;
+}
+
+/* centered content */
+.merch-content{
+    position:relative;
+    z-index:2;
+    max-width:700px;
+}
+
+.merch-content h2{
+    font-family:'Playfair Display', serif;
+    font-size:2.4em;
+    margin-bottom:0.3em;
+}
+
+.merch-content p{
+    color:#cccccc;
+    font-weight:300;
+    margin-bottom:1.5em;
+}
+
+.merch-content .btn{
+    border-radius:999px;
+}
 
 /* ===== Shop ===== */
 #shop {
@@ -483,7 +516,7 @@ html, body {
 /* ===== Lookbook ===== */
 #lookbook {
     padding: 6em 2em;
-    background: #0f0f0f;
+    background: #000;
     text-align: center;
 }
 
@@ -505,7 +538,7 @@ html, body {
 .lookbook-item {
     border-radius: 20px;
     overflow: hidden;
-    background: #111;
+    background: #000;
     box-shadow: 0 20px 60px rgba(0,0,0,0.6);
     height: 650px;
 }
@@ -690,6 +723,76 @@ html, body {
         text-align:center;
     }
 }
+
+#video-section{
+    position:relative;
+    height:80vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    text-align:center;
+    overflow:hidden;
+}
+
+/* video background */
+.section-video{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    min-width:100%;
+    min-height:100%;
+    object-fit:cover;
+    z-index:0;
+}
+
+/* dark overlay */
+#video-section::after{
+    content:'';
+    position:absolute;
+    inset:0;
+    background:rgba(0,0,0,0.45);
+    z-index:1;
+}
+
+/* text above video */
+.section-content{
+    position:relative;
+    z-index:2;
+}
+
+/* ===== Video Section Text Styling ===== */
+.section-content h2{
+    font-family:'Playfair Display', serif;
+    font-size:2.3em;
+    font-weight:700;
+    margin-bottom:0.4em;
+}
+
+.section-content p{
+    color:#cccccc;
+    font-size:1.1em;
+    font-weight:300;
+    line-height:1.7;
+}
+/* ===== Global Button Style ===== */
+.btn{
+    padding:0.8em 1.8em;
+    background:linear-gradient(135deg,#ff6347,#b76e79);
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-weight:500;
+    letter-spacing:1px;
+    display:inline-block;
+    border-radius:999px;   /* makes the button pill-shaped */
+    transition:transform 0.3s, box-shadow 0.3s;
+}
+
+.btn:hover{
+    transform:scale(1.05);
+    box-shadow:0 5px 15px rgba(0,0,0,0.4);
+}
 </style>
 </head>
 <body>
@@ -725,7 +828,7 @@ html, body {
     <div class="hero-content">
         <h1>ELVT. <span class="brand">by Adam Hamed</span></h1>
         <p class="hero-tagline">Elevate your wardrobe</p>
-        <a href="https://www.instagram.com/elvt.by.adam/" target="_blank" class="btn">Discover More</a>
+        <a href="gender.html" class="btn">MERCH</a>
     </div>
 	
 	<!-- HERO BOTTOM SLIDING BRAND BAR -->
@@ -768,6 +871,18 @@ html, body {
 
 </section>
 
+<section id="video-section">
+    <video autoplay muted loop playsinline class="section-video">
+        <source src="images/Vid.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="section-content">
+        <h2>ELVT. Comfort</h2>
+        <p>Built for movement. Designed for presence.</p>
+		<a href="menhoodies.html" class="btn">Shop The Look</a>
+    </div>
+</section>
 
 
 <!-- CREATIVE MODEL CAMPAIGN SECTION -->
@@ -814,9 +929,21 @@ html, body {
         </p>
     </div>
 </section>
+<section id="merch">
+
+<div class="merch-content">
+    <h2>Merch</h2>
+    <div class="divider"></div>
+    <p>Explore the ELVT. collection</p>
+    <a href="gender.html" class="btn">View Merch</a>
+</div>
+
+</section>
+
+
 <!-- MODEL LOOKBOOK SECTION -->
 <section id="lookbook">
-    <h2>Tight, Like a second skin. Compression fit.</h2>
+    <h2>Compression Tshirts</h2>
     <div class="divider"></div>
 
     <div class="lookbook-grid">
@@ -837,22 +964,8 @@ html, body {
 </section>
 
 
-<!-- MERCH (NEW SECTION) -->
-<section id="merch">
-    <h2>Merch</h2>
-    <div class="divider"></div>
-    <div class="merch-container">
-        <div class="merch-item">
-            <img src="https://i.pinimg.com/1200x/e7/c2/ac/e7c2ac321fbe9112030155e2ee24288d.jpg" alt="Merch 1">
-        </div>
-		<div class="merch-item">
-            <img src="https://i.pinimg.com/736x/77/1a/d0/771ad09677210dc64edec0927f495727.jpg" alt="Merch 2">
-        </div>
-		
-    </div>
-	<a href="gender.html" class="btn" style="margin-top:2em; display:inline-block;">View Merch</a>
 
-</section>
+
 
 
 <!-- Contact -->
