@@ -11,8 +11,6 @@ body { margin:0; font-family:'Poppins', sans-serif; background:#000; color:#f5f5
 a { text-decoration:none; }
 button { font-family:inherit; }
 
-
-
 /* ===== Navbar ===== */
 nav {
     position:fixed;
@@ -27,22 +25,27 @@ nav {
 .nav-inner {
     display:flex;
     align-items:center;
-    justify-content:center; /* DESKTOP CENTER */
+    justify-content:center;
+    position:relative;
 }
-
 
 nav li { display:inline-block; }
 nav a { color:#f5f5f5; font-weight:400; letter-spacing:1px; transition:color 0.3s; }
 nav a:hover { color:#ff6347; }
+
 .menu-toggle {
     display:none;
     font-size:1.8em;
     cursor:pointer;
     user-select:none;
+    position:absolute;
+    left:0;
 }
+
 section {
     scroll-margin-top:90px;
 }
+
 nav ul {
     display:flex;
     justify-content:center;
@@ -51,81 +54,64 @@ nav ul {
     list-style:none;
     margin:0 auto;
     padding:0;
-	flex-wrap:nowrap;
+    flex-wrap:nowrap;
 }
-.nav-inner {
-    position:relative;
-}
-
-.menu-toggle {
-    position:absolute;
-    left:0;
-}
-
-
-
-
-/* ===== Hero ===== */
-#hero { height:100vh; background:url('https://images.unsplash.com/photo-1520975918311-63c1ccdbb5eb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat; display:flex; align-items:center; justify-content:center; text-align:center; position:relative; }
-#hero::after { content:''; position:absolute; top:0; left:0; right:0; bottom:0; background:linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0)); }
-.hero-content { position:relative; z-index:1; animation:fadeIn 2s ease-in-out; }
-#hero h1 { font-family:'Playfair Display', serif; font-size:3.5em; font-weight:700; letter-spacing:2px; }
-#hero h1 .brand { font-style:italic; font-weight:300; font-size:0.6em; display:block; margin-top:0.5em; color:#cccccc; }
-.hero-tagline { margin-top:1em; font-size:1.3em; font-weight:300; color:#cccccc; animation:fadeUp 2.5s ease-in-out; }
-#hero .btn { margin-top:1.5em; padding:0.8em 1.8em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; letter-spacing:1px; transition: transform 0.3s, box-shadow 0.3s; }
-#hero .btn:hover { transform:scale(1.1); box-shadow:0 5px 15px rgba(0,0,0,0); }
-
 
 /* ===== Hero Section ===== */
 #hero {
     position: relative;
     width: 100%;
-    min-height: 100vh;        /* always full viewport height */
+    min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    background: url('https://images.unsplash.com/photo-1520975918311-63c1ccdbb5eb?auto=format&fit=crop&w=1600&q=80') center/cover no-repeat;
-    overflow: hidden;          /* prevents children from causing scroll */
+    background: url("images/hoodie.jpeg") center/cover no-repeat;
+    overflow: hidden;
 }
 
+/* logo behind content */
 #hero::before {
     content: '';
     position: absolute;
     top: 40%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 120vw;             /* slightly larger than viewport */
-    max-width: 1700px;        /* prevent it from getting too big */
+    width: 120vw;
+    max-width: 1700px;
     height: auto;
-    aspect-ratio: 16 / 9;     /* keeps logo proportionate */
+    aspect-ratio: 16 / 9;
     background: url('images/logo.png') center/contain no-repeat;
-    opacity: 0.09;            /* faded effect */
-    pointer-events: none;      /* allow clicks through */
+    opacity: 0.35; /* changed from 0.09 */
+    pointer-events: none;
     z-index: 0;
     animation: logoFadeIn 2s ease-out forwards;
 }
 
+/* dark fade over hero background image */
 #hero::after {
     content: '';
     position: absolute;
-    inset: 0;                  /* top:0; left:0; right:0; bottom:0; */
-    background: linear-gradient(to bottom, rgba(0,0,0,0), rgba(0,0,0,0));
+    inset: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.35),
+        rgba(0,0,0,0.5)
+    );
     z-index: 1;
 }
 
 .hero-content{
     position: relative;
     z-index: 2;
-    margin-top: -230px;     /* ⬆️ moves text upward */
+    margin-top: -230px;
     animation: fadeIn 2s ease-in-out;
 }
-
 
 /* Hero text */
 #hero h1 {
     font-family: 'Playfair Display', serif;
-    font-size: clamp(2rem, 6vw, 3.5rem); /* responsive font */
+    font-size: clamp(2rem, 6vw, 3.5rem);
     font-weight: 700;
     letter-spacing: 2px;
 }
@@ -141,7 +127,7 @@ nav ul {
 
 .hero-tagline {
     margin-top: 1em;
-    font-size: clamp(1rem, 3vw, 1.3rem); /* responsive tagline */
+    font-size: clamp(1rem, 3vw, 1.3rem);
     font-weight: 300;
     color: #cccccc;
     animation: fadeUp 2.5s ease-in-out;
@@ -167,17 +153,14 @@ nav ul {
 /* ===== Animations ===== */
 @keyframes logoFadeIn {
     0% { opacity: 0; transform: translate(-50%, -50%) scale(0.95); }
-    100% { opacity: 0.09; transform: translate(-50%, -50%) scale(1); }
+    100% { opacity: 0.35; transform: translate(-50%, -50%) scale(1); } /* changed from 0.09 */
 }
 
 @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
 @keyframes fadeUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
 
-
-
-
 /* ===== About ===== */
-#about { padding:6em 2em; background:#0e0e0e; color:#f5f5f5; text-align:center; }
+#about { padding:6em 2em; background:#1; color:#f5f5f5; text-align:center; }
 .about-content { max-width:800px; margin:0 auto; animation:fadeUp 1.2s ease-in-out; }
 #about h2 { font-family:'Playfair Display', serif; font-size:2.2em; font-weight:700; text-transform:uppercase; margin-bottom:0.5em; }
 .highlight { color:#ff6347; }
@@ -194,8 +177,8 @@ nav ul {
 #gallery .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
 #gallery .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
 
-/* ===== Merch Section (NEW) ===== */
-#merch { padding:5em 2em; text-align:center; background:#101010; }#merch {
+/* ===== Merch Section ===== */
+#merch {
     padding:5em 2em;
     text-align:center;
     background:
@@ -215,8 +198,6 @@ nav ul {
 #merch .btn { padding:1em 2em; background:linear-gradient(135deg,#ff6347,#b76e79); color:white; border:none; cursor:pointer; font-weight:500; transition: transform 0.3s, box-shadow 0.3s; }
 #merch .btn:hover { transform:scale(1.05); box-shadow:0 5px 15px rgba(0,0,0,0.5); }
 
-
-
 /* ===== Shop ===== */
 #shop {
     padding:5em 2em;
@@ -228,6 +209,7 @@ nav ul {
     background-position: center;
     background-repeat: no-repeat;
 }
+
 #shop h2 { font-family:'Playfair Display', serif; font-size:2em; font-weight:700; margin-bottom:0.5em; }
 #shop .divider { width:80px; height:3px; background:linear-gradient(to right,#ff6347,#b76e79); margin:0 auto 1.5em; border-radius:2px; }
 #shop .shop-intro { color:#cccccc; font-weight:300; margin-bottom:2em; font-size:1.1em; }
@@ -253,15 +235,8 @@ footer .social-icons { display:flex; justify-content:center; gap:1em; margin-bot
 footer .social-icons a svg { width:24px; height:24px; fill:#fff; transition: transform 0.3s, fill 0.3s; }
 footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 
-/* ===== Animations ===== */
-@keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
-@keyframes fadeUp { from {opacity:0; transform:translateY(40px);} to {opacity:1; transform:translateY(0);} }
-
-
-
 /* ===== Premium Mobile Nav ===== */
 @media (max-width:768px) {
-
     body.nav-open {
         overflow: hidden;
     }
@@ -322,9 +297,9 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     }
 }
 
-/* PROFESSIONAL CART ICON */
+/* ===== Cart Icon ===== */
 .cart-icon {
-    display: none; /* hidden on desktop */
+    display: none;
     font-size: 1.5em;
     color: #f5f5f5;
     transition: transform 0.3s, color 0.3s;
@@ -341,7 +316,7 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
     color: #ff6347;
 }
 
-/* SHOW CART ICON ONLY ON MOBILE */
+/* ===== Mobile Cart ===== */
 @media (max-width:768px) {
     .cart-icon {
         display: block;
@@ -351,9 +326,8 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
         transform: translateY(-50%);
     }
 
-    /* Adjust hamburger if needed */
     .menu-toggle {
-        right: 4em; /* move slightly left so they don't overlap */
+        right: 4em;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -361,19 +335,19 @@ footer .social-icons a:hover svg { transform:scale(1.2); fill:#ff6347; }
 }
 
 html, body {
-    overflow-x: hidden; /* prevents horizontal scroll */
+    overflow-x: hidden;
     max-width: 100vw;
 }
 
 /* Slightly bigger hero logo on iPhones / small screens */
 @media (max-width: 768px) {
     #hero::before {
-        width: 200vw;       /* slightly bigger */
-        max-width: none;    /* removes the previous max-width limit */
+        width: 200vw;
+        max-width: none;
     }
 }
 
-/* ===== HERO BOTTOM BRAND SLIDER (SMOOTH DRAG + LOOP) ===== */
+/* ===== Hero Bottom Brand Slider ===== */
 .hero-sliderbar{
     position:absolute;
     left:0;
@@ -388,8 +362,8 @@ html, body {
 }
 
 .hero-slider-viewport{
-    overflow:hidden;              /* important: no native scroll */
-    touch-action: pan-y;          /* allow vertical page scroll, block horizontal browser gestures */
+    overflow:hidden;
+    touch-action: pan-y;
     cursor: grab;
     user-select: none;
     padding: 0 28px;
@@ -404,7 +378,6 @@ html, body {
     transform: translate3d(0,0,0);
 }
 
-/* BIG tiles */
 .hero-slide{
     width: 280px;
     height: 250px;
@@ -421,12 +394,9 @@ html, body {
     height:100%;
     object-fit: cover;
     display:block;
-
-    /* 🔥 stops the “image gets taken out” problem */
     -webkit-user-drag: none;
     user-drag: none;
     pointer-events: none;
-
     filter: contrast(1.08) brightness(0.95);
     transition: transform 0.5s ease, filter 0.5s ease;
 }
@@ -436,33 +406,30 @@ html, body {
     filter: contrast(1.15) brightness(1);
 }
 
-
-
-/* ===== HERO SLIDER – FRAME FITS IMAGE (MOBILE) ===== */
+/* ===== Hero Slider Mobile ===== */
 @media (max-width:768px){
+    .hero-slide{
+        width: 220px;
+        height: auto;
+        padding: 0;
+        margin: 0;
+        background: rgba(255,255,255,0.06);
+        border-radius: 16px;
+        border: 1px solid rgba(255,255,255,0.12);
+        overflow: hidden;
+    }
 
-  .hero-slide{
-    width: 220px;
-    height: auto;           /* 🔑 frame wraps image */
-    padding: 0;
-    margin: 0;
-    background: rgba(255,255,255,0.06);
-    border-radius: 16px;
-    border: 1px solid rgba(255,255,255,0.12);
-    overflow: hidden;
-  }
-
-  .hero-slide img{
-    display: block;         /* 🔑 removes inline gap */
-    width: 100%;
-    height: auto;           /* 🔑 natural image height */
-    object-fit: initial;    /* 🔑 no forced scaling */
-    margin: 0;
-    padding: 0;
-  }
+    .hero-slide img{
+        display: block;
+        width: 100%;
+        height: auto;
+        object-fit: initial;
+        margin: 0;
+        padding: 0;
+    }
 }
 
-/* ===== Payment Methods (FULL COLOR) ===== */
+/* ===== Payment Methods ===== */
 .payment-methods {
     display: flex;
     justify-content: center;
@@ -476,8 +443,8 @@ html, body {
 .payment-methods img {
     height: 30px;
     width: auto;
-    opacity: 1;           /* FULL visibility */
-    filter: none;         /* NO grayscale */
+    opacity: 1;
+    filter: none;
     transition: transform 0.3s ease;
 }
 
@@ -486,41 +453,243 @@ html, body {
 }
 
 @media (max-width:768px){
-  .payment-methods{
-    gap: 10px;
-    padding: 1.2em 0.8em;
-  }
+    .payment-methods{
+        gap: 10px;
+        padding: 1.2em 0.8em;
+    }
 
-  .payment-methods img{
-    height: 22px;
-    max-width: 26vw;
-  }
+    .payment-methods img{
+        height: 22px;
+        max-width: 26vw;
+    }
 
-  /* keep apple pay balanced (not huge) */
-  .payment-methods img[alt="Apple Pay"]{
-    height: 26px;
-  }
+    .payment-methods img[alt="Apple Pay"]{
+        height: 26px;
+    }
 
-  /* visa slightly smaller still */
-  .payment-methods img[alt="Visa"]{
-    height: 18px;
-  }
+    .payment-methods img[alt="Visa"]{
+        height: 18px;
+    }
 }
 
-
-/* Slightly bigger Apple Pay logo */
 .payment-methods img[alt="Apple Pay"] {
-    height: 50px;   /* others are ~30px */
+    height: 50px;
 }
 
-/* Slightly smaller Visa Pay logo */
 .payment-methods img[alt="Visa"] {
-    height: 22px;   /* others are ~30px */
+    height: 22px;
 }
 
+/* ===== Lookbook ===== */
+#lookbook {
+    padding: 6em 2em;
+    background: #0f0f0f;
+    text-align: center;
+}
 
+#lookbook h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.4em;
+    font-weight: 700;
+    margin-bottom: 0.5em;
+}
 
+.lookbook-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5em;
+    max-width: 1300px;
+    margin: 3em auto 0;
+}
 
+.lookbook-item {
+    border-radius: 20px;
+    overflow: hidden;
+    background: #111;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+    height: 650px;
+}
+
+.lookbook-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.6s ease, filter 0.6s ease;
+}
+
+.lookbook-item:hover img {
+    transform: scale(1.08);
+    filter: contrast(1.1) brightness(1.05);
+}
+
+@media (max-width: 768px) {
+    .lookbook-grid {
+        grid-template-columns: 1fr;
+        gap: 1.8em;
+    }
+
+    .lookbook-item {
+        height: 500px;
+    }
+}
+
+/* ===== Model Campaign ===== */
+#model-campaign{
+    padding:6em 2em;
+    background:linear-gradient(to bottom,#0a0a0a,#111);
+    text-align:center;
+}
+
+.campaign-header{
+    max-width:820px;
+    margin:0 auto 3em;
+}
+
+.campaign-header h2{
+    font-family:'Playfair Display',serif;
+    font-size:2.5em;
+    font-weight:700;
+    margin-bottom:.4em;
+    letter-spacing:1px;
+}
+
+.campaign-header p{
+    color:#bfbfbf;
+    font-size:1.05em;
+    font-weight:300;
+    line-height:1.8;
+}
+
+.campaign-layout{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.2fr .8fr;
+    gap:1.6em;
+    align-items:start;
+}
+
+.campaign-main{
+    border-radius:18px;
+    overflow:hidden;
+    background:#111;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 20px 50px rgba(0,0,0,.45);
+}
+
+.campaign-main img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+.campaign-overlay{
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    padding:1.6em;
+    text-align:left;
+    background:linear-gradient(to top,rgba(0,0,0,.85),rgba(0,0,0,0));
+}
+
+.campaign-overlay span{
+    color:#fff;
+    font-size:1.05em;
+    font-weight:500;
+    letter-spacing:1px;
+}
+
+.campaign-side{
+    display:flex;
+    flex-direction:column;
+    gap:1.2em;
+}
+
+.campaign-small{
+    border-radius:16px;
+    overflow:hidden;
+    background:#111;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 16px 40px rgba(0,0,0,.35);
+}
+
+.campaign-small img{
+    width:100%;
+    height:auto;
+    display:block;
+    object-fit:contain;
+}
+
+.campaign-text{
+    background:linear-gradient(135deg,rgba(255,99,71,.08),rgba(183,110,121,.08));
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:16px;
+    padding:2em 1.6em;
+    text-align:left;
+}
+
+.campaign-text h3{
+    font-family:'Playfair Display',serif;
+    font-size:1.6em;
+    margin-bottom:.6em;
+    color:#fff;
+}
+
+.campaign-text p{
+    color:#cfcfcf;
+    line-height:1.8;
+    font-weight:300;
+    margin-bottom:1.4em;
+}
+
+.campaign-btn{
+    display:inline-block;
+    padding:.9em 1.6em;
+    background:linear-gradient(135deg,#ff6347,#b76e79);
+    color:#fff;
+    border-radius:999px;
+    font-weight:500;
+    letter-spacing:1px;
+    transition:.3s;
+}
+
+.campaign-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 25px rgba(0,0,0,.35);
+}
+
+.campaign-main img,
+.campaign-small img{
+    transition:transform .45s ease,filter .45s ease;
+}
+
+.campaign-main:hover img,
+.campaign-small:hover img{
+    transform:scale(1.02);
+}
+
+@media (max-width:992px){
+    .campaign-layout{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width:768px){
+    #model-campaign{
+        padding:5em 1.2em;
+    }
+
+    .campaign-header h2{
+        font-size:2em;
+    }
+
+    .campaign-text{
+        text-align:center;
+    }
+}
 </style>
 </head>
 <body>
@@ -599,6 +768,41 @@ html, body {
 
 </section>
 
+
+
+<!-- CREATIVE MODEL CAMPAIGN SECTION -->
+<section id="model-campaign">
+    <div class="campaign-header">
+        <h2>Built For Performance.</h2>
+        <div class="divider"></div>
+        <p>Sharp and Steady</p>
+    </div>
+
+    <div class="campaign-layout">
+        <div class="campaign-main">
+            <a href="mensportswear.html">
+                <img src="images/adam.jpg" alt="ELVT model main look">
+                <div class="campaign-overlay">
+                    <span>ELVT. Performance Fit</span>
+                </div>
+            </a>
+        </div>
+
+        <div class="campaign-side">
+            <a href="mensportswear.html" class="campaign-small">
+                <img src="images/AHMD1.jpg" alt="ELVT model side pose">
+            </a>
+
+            <div class="campaign-text">
+                <h3>Tight. Clean. Powerful.</h3>
+                <p>
+                    Designed to contour the body, sharpen the frame, and give every fit a stronger presence.
+                </p>
+                <a href="mensportswear.html" class="campaign-btn">Shop The Look</a>
+            </div>
+        </div>
+    </div>
+</section>
 <!-- About -->
 <section id="about">
     <div class="about-content">
@@ -610,6 +814,28 @@ html, body {
         </p>
     </div>
 </section>
+<!-- MODEL LOOKBOOK SECTION -->
+<section id="lookbook">
+    <h2>Tight, Like a second skin. Compression fit.</h2>
+    <div class="divider"></div>
+
+    <div class="lookbook-grid">
+
+        <a href="mensportswear.html" class="lookbook-item">
+            <img src="images/MOD1.png" alt="Model wearing ELVT shirt front">
+        </a>
+
+        <a href="mensportswear.html" class="lookbook-item">
+            <img src="images/MOD2.png" alt="Model wearing ELVT shirt side">
+        </a>
+
+        <a href="mensportswear.html" class="lookbook-item">
+            <img src="images/MOD3.png" alt="Model wearing ELVT shirt back">
+        </a>
+
+    </div>
+</section>
+
 
 <!-- MERCH (NEW SECTION) -->
 <section id="merch">
