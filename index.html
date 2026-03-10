@@ -902,6 +902,21 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 </script>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+    const video = document.getElementById("heroVideo");
+
+    const tryPlay = () => {
+        video.play().catch(()=>{});
+    };
+
+    tryPlay();
+
+    document.addEventListener("touchstart", tryPlay, { once:true });
+    document.addEventListener("click", tryPlay, { once:true });
+});
+</script>
+
 <!-- CREATIVE MODEL CAMPAIGN SECTION -->
 <section id="model-campaign">
     <div class="campaign-header">
