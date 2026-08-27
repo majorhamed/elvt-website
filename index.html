@@ -76,11 +76,11 @@ nav ul {
 #hero::before {
     content: '';
     position: absolute;
-    top: 40%;
+    top: 45%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 120vw;
-    max-width: 1700px;
+    max-width: 2000px;
     height: auto;
     aspect-ratio: 16 / 9;
     background: url('images/logo.png') center/contain no-repeat;
@@ -441,6 +441,10 @@ html, body {
     transform: scale(1.08);
     filter: contrast(1.15) brightness(1);
 }
+/* TEMPORARILY HIDE HERO ANIMATED SLIDER */
+.hero-sliderbar {
+    display: none !important;
+}
 
 /* ===== Hero Slider Mobile ===== */
 @media (max-width:768px){
@@ -464,6 +468,224 @@ html, body {
         padding: 0;
     }
 }
+/* TEMPORARILY HIDE HERO ANIMATED SLIDER */
+.hero-sliderbar {
+    display: none !important;
+}
+
+
+/* ===== ELVT Pants Showcase ===== */
+#pants-showcase {
+    background: #000;
+    padding: 7em 0;
+    overflow: hidden;
+}
+
+.pants-header {
+    text-align: center;
+    padding: 0 2em 4em;
+}
+
+.pants-header h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2.6rem, 6vw, 5rem);
+    margin: 0 0 0.25em;
+    letter-spacing: 2px;
+}
+
+.pants-header p {
+    color: #999;
+    font-size: 1.05em;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+
+/* HUGE IMAGE */
+.pants-feature {
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+}
+
+.pants-feature img {
+    width: 100%;
+    height: 90vh;
+    min-height: 650px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s ease;
+}
+
+.pants-feature:hover img {
+    transform: scale(1.025);
+}
+
+
+/* Text over image */
+.pants-feature-content {
+    position: absolute;
+    left: 7%;
+    bottom: 8%;
+    z-index: 2;
+}
+
+.pants-feature-content h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 4rem);
+    margin: 0 0 0.3em;
+}
+
+.pants-feature-content p {
+    color: #ddd;
+    font-size: 1em;
+    margin-bottom: 1.5em;
+}
+
+
+/* Dark gradient so text is readable */
+.pants-feature::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.75) 0%,
+        rgba(0,0,0,0.1) 55%,
+        rgba(0,0,0,0) 100%
+    );
+    pointer-events: none;
+}
+
+.pants-feature-content {
+    z-index: 3;
+}
+
+
+/* SECOND AREA - TWO GIANT PICTURES */
+.pants-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    width: 100%;
+    margin-top: 8px;
+}
+
+.pants-grid-item {
+    position: relative;
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+    background: #000;
+}
+
+.pants-grid-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: contain;
+    object-position: center;
+}
+
+.pants-grid-item {
+    position: relative;
+    height: 75vh;
+    min-height: 600px;
+    overflow: hidden;
+}
+
+.pants-grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    display: block;
+    background: #000;
+    transition: transform 0.7s ease;
+}
+
+.pants-grid-item:hover img {
+    transform: scale(1.04);
+}
+
+.pants-grid-label {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    z-index: 3;
+}
+
+.pants-grid-label h3 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 2em;
+    color: #fff;
+}
+
+.pants-grid-item::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.65),
+        transparent 55%
+    );
+}
+
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+
+    #pants-showcase {
+        padding: 5em 0 0;
+    }
+
+    .pants-header {
+        padding-bottom: 2.5em;
+    }
+
+    .pants-feature img {
+        height: 75vh;
+        min-height: 520px;
+    }
+
+    .pants-feature-content {
+        left: 25px;
+        right: 25px;
+        bottom: 35px;
+    }
+
+    .pants-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3px;
+    }
+
+    .pants-grid-item {
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .pants-grid-item img {
+        width: 100%;
+        height: auto;
+        object-fit: contain;
+        display: block;
+    }
+}
+
+    .pants-grid-item {
+        height: 70vh;
+        min-height: 500px;
+    }
+
+    .pants-grid-label {
+        left: 25px;
+        bottom: 30px;
+    }
+}
+
 
 /* ===== Payment Methods ===== */
 .payment-methods {
@@ -513,7 +735,7 @@ html, body {
 }
 
 .payment-methods img[alt="Visa"] {
-    height: 22px;
+    height: 30px;
 }
 
 /* ===== Lookbook ===== */
@@ -829,7 +1051,7 @@ html, body {
     <div class="hero-content">
         <h1>ELVT. <span class="brand">by Adam Hamed</span></h1>
         <p class="hero-tagline">Elevate your wardrobe</p>
-        <a href="gender.html" class="btn">MERCH</a>
+        <a href="gender.html" class="btn">SHOP</a>
     </div>
 	
 	<!-- HERO BOTTOM SLIDING BRAND BAR -->
@@ -872,6 +1094,48 @@ html, body {
 
 </section>
 
+<!-- ELVT PANTS SHOWCASE -->
+<section id="pants-showcase">
+
+
+    <!-- TWO MORE HUGE PICTURES -->
+    <div class="pants-grid">
+	
+	    <a href="menpants.html" class="pants-grid-item">
+
+            <img src="images/3.png" alt="ELVT Black Pants">
+
+            <div class="pants-grid-label">
+                <h3></h3>
+            </div>
+
+        </a>
+
+        <a href="menpants.html" class="pants-grid-item">
+
+            <img src="images/1.png" alt="ELVT Black Pants">
+
+            <div class="pants-grid-label">
+                <h3></h3>
+            </div>
+
+        </a>
+
+
+        <a href="menpants.html" class="pants-grid-item">
+
+            <img src="images/2.png" alt="ELVT Sweatpants">
+
+            <div class="pants-grid-label">
+                <h3></h3>
+            </div>
+
+        </a>
+
+    </div>
+
+</section>
+
 <section id="video-section">
     <video
         id="heroVideo"
@@ -892,6 +1156,8 @@ html, body {
         <a href="menhoodies.html" class="btn">Shop The Look</a>
     </div>
 </section>
+
+
 
 <script>
 document.addEventListener("DOMContentLoaded", () => {
@@ -933,7 +1199,7 @@ document.addEventListener("DOMContentLoaded", () => {
             <a href="mensportswear.html">
                 <img src="images/adam.jpg" alt="ELVT model main look">
                 <div class="campaign-overlay">
-                    <span>ELVT. Performance Fit</span>
+                    <span></span>
                 </div>
             </a>
         </div>
@@ -970,7 +1236,7 @@ document.addEventListener("DOMContentLoaded", () => {
     <h2>Merch</h2>
     <div class="divider"></div>
     <p>Explore the ELVT. collection</p>
-    <a href="gender.html" class="btn">View Merch</a>
+    <a href="gender.html" class="btn">CHECK IT OUT</a>
 </div>
 
 </section>
@@ -984,15 +1250,15 @@ document.addEventListener("DOMContentLoaded", () => {
     <div class="lookbook-grid">
 
         <a href="mensportswear.html" class="lookbook-item">
-            <img src="images/MOD1.png" alt="Model wearing ELVT shirt front">
+            <img src="images/4.png" alt="Model wearing ELVT shirt front">
         </a>
 
         <a href="mensportswear.html" class="lookbook-item">
-            <img src="images/MOD2.png" alt="Model wearing ELVT shirt side">
+            <img src="images/5.png" alt="Model wearing ELVT shirt side">
         </a>
 
         <a href="mensportswear.html" class="lookbook-item">
-            <img src="images/MOD3.png" alt="Model wearing ELVT shirt back">
+            <img src="images/6.png" alt="Model wearing ELVT shirt back">
         </a>
 
     </div>
@@ -1050,15 +1316,13 @@ document.addEventListener("DOMContentLoaded", () => {
 	
 	
 <div class="payment-methods">
-    <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Visa_Logo.png" alt="Visa">
+    <img src="images/visa.jpg" alt="Visa">
     <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png" alt="Mastercard">
     <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
     <img src="images/apple.png" alt="Apple Pay">
     <img src="https://upload.wikimedia.org/wikipedia/commons/4/40/Klarna_Payment_Badge.svg" alt="Klarna">
     <img src="https://upload.wikimedia.org/wikipedia/commons/3/30/American_Express_logo.svg" alt="American Express">
 </div>
-
-
 </footer>
 
 <script>
@@ -1192,6 +1456,8 @@ menu.querySelectorAll("a").forEach(link => {
   });
 })();
 </script>
+
+
 
 
 
