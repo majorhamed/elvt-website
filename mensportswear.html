@@ -236,7 +236,162 @@ nav a:hover { color:#ff6347; }
         font-size:0.85em;
     }
 }
+/* ===== NAV DROPDOWNS ===== */
 
+nav li {
+    position: relative;
+}
+
+/* Main dropdown container */
+.nav-dropdown {
+    position: relative;
+}
+
+/* Dropdown menu */
+.dropdown-menu {
+    position: absolute;
+    top: calc(100% + 18px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-10px);
+
+    min-width: 210px;
+    padding: 12px 0;
+
+    background: rgba(10, 10, 10, 0.96);
+    border: 1px solid rgba(255,255,255,0.10);
+    border-radius: 12px;
+
+    box-shadow: 0 15px 40px rgba(0,0,0,0.55);
+    backdrop-filter: blur(15px);
+
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+
+    transition:
+        opacity 0.25s ease,
+        transform 0.25s ease,
+        visibility 0.25s ease;
+
+    z-index: 1000;
+}
+
+/* Invisible bridge so dropdown doesn't disappear
+   while moving cursor from title to menu */
+.dropdown-menu::before {
+    content: "";
+    position: absolute;
+    top: -20px;
+    left: 0;
+    width: 100%;
+    height: 20px;
+}
+
+/* Show dropdown when hovering */
+.nav-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+
+    transform: translateX(-50%) translateY(0);
+}
+
+/* Dropdown links */
+.dropdown-menu a {
+    display: block;
+    padding: 12px 22px;
+
+    color: #f5f5f5;
+    font-size: 0.9em;
+    font-weight: 400;
+
+    letter-spacing: 1px;
+    white-space: nowrap;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        padding-left 0.25s ease;
+}
+
+.dropdown-menu a:hover {
+    color: #ff6347;
+    background: rgba(255,255,255,0.05);
+    padding-left: 27px;
+}
+
+/* Small arrow */
+.dropdown-title::after {
+    content: "⌄";
+    display: inline-block;
+    margin-left: 7px;
+
+    font-size: 0.9em;
+
+    transition: transform 0.25s ease;
+}
+
+.nav-dropdown:hover .dropdown-title::after {
+    transform: rotate(180deg);
+}
+
+
+/* ===== MOBILE DROPDOWN ===== */
+
+@media (max-width: 768px) {
+
+    .nav-dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-menu {
+        position: static;
+
+        transform: none;
+
+        min-width: 0;
+        width: 100%;
+
+        padding: 0;
+
+        background: transparent;
+        border: none;
+        border-radius: 0;
+
+        box-shadow: none;
+        backdrop-filter: none;
+
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+
+        max-height: 0;
+        overflow: hidden;
+
+        transition:
+            max-height 0.4s ease,
+            margin 0.4s ease;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+        transform: none;
+        max-height: 300px;
+        margin-top: 12px;
+    }
+
+    .dropdown-menu a {
+        font-size: 0.85em;
+        color: #aaa;
+        padding: 8px 0;
+    }
+
+    .dropdown-menu a:hover {
+        padding-left: 0;
+        background: transparent;
+        color: #ff6347;
+    }
+}
 
 </style>
 </head>
@@ -245,20 +400,115 @@ nav a:hover { color:#ff6347; }
 
 
 <nav>
+    <div class="nav-inner">
 
-<a href="index.html" class="back-btn">← Back</a>
+        <!-- MOBILE MENU BUTTON -->
+        <div class="menu-toggle" id="menuToggle">☰</div>
 
-  <div class="nav-inner">
-    <div class="menu-toggle" id="menuToggle">☰</div>
+        <!-- MOBILE CART ICON -->
+        <a href="cart.html" class="cart-icon" aria-label="Cart">
+            <svg xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 24 24"
+                 width="24"
+                 height="24"
+                 fill="currentColor">
+                <path d="M7 18c-1.104 0-2 .897-2 2s.896 2 2 2 2-.897 2-2-.896-2-2-2zm10 0c-1.104 0-2 .897-2 2s.896 2 2 2 2-.897 2-2-.896-2-2-2zm-12.846-3l1.2-6h14.572l-1.2 6H4.154zM3 2h2l3.6 7.59-1.35 2.45C7.16 12.37 7 12.69 7 13c0 .553.447 1 1 1h12v-2H8.42l.75-1.36L18 4H6.21L5.21 2H3z"/>
+            </svg>
+        </a>
 
-    <ul id="navMenu">
-      <li><a href="index.html#hero">Home</a></li>
-      <li><a href="index.html#about">Philosophy</a></li>
-      <li><a href="index.html#merch">Merch</a></li>
-      <li><a href="index.html#contact">Contact</a></li>
-      <li><a href="cart.html">Cart</a></li>
-    </ul>
-  </div>
+
+        <ul id="navMenu">
+
+            <!-- HOME -->
+            <li>
+                <a href="#hero">Home</a>
+            </li>
+
+
+            <!-- FOR HIM -->
+            <li class="nav-dropdown">
+
+                <a href="#" class="dropdown-title">
+                    For Him
+                </a>
+
+                <div class="dropdown-menu">
+				
+			        <a href="mentshirts.html">
+                        Tshirts
+                    </a>
+
+                    <a href="menhoodies.html">
+                        Hoodies
+                    </a>
+					
+					<a href="menshorts.html">
+                        Shorts
+                    </a>
+
+                    <a href="menpants.html">
+                        Pants
+                    </a>
+
+                    <a href="mensportswear.html">
+                        Sportswear
+                    </a>
+
+                </div>
+
+            </li>
+
+
+            <!-- FOR HER -->
+            <li class="nav-dropdown">
+
+                <a href="#" class="dropdown-title">
+                    For Her
+                </a>
+
+                <div class="dropdown-menu">
+
+                    <a href="womentshirts.html">
+                        Tshirts
+                    </a>
+
+                    <a href="womenhoodies.html">
+                        Hoodies
+                    </a>
+
+                    <a href="womenpants.html">
+                        Pants
+                    </a>
+					
+					<a href="womensportswear.html">
+                        Sportswear
+                    </a>
+
+                </div>
+
+            </li>
+
+
+            <!-- PHILOSOPHY -->
+            <li>
+                <a href="#about">Philosophy</a>
+            </li>
+
+
+            <!-- CONTACT -->
+            <li>
+                <a href="#contact">Contact</a>
+            </li>
+
+
+            <!-- CART -->
+            <li>
+                <a href="cart.html">Cart</a>
+            </li>
+
+        </ul>
+
+    </div>
 </nav>
 
 
