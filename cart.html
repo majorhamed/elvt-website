@@ -378,13 +378,14 @@ document.getElementById("checkout-btn").addEventListener("click", async () => {
         })
     });
 
-    const data = await response.json();
+  const data = await response.json();
 
-    if (data.url) {
-        window.location.href = data.url;
-    } else {
-        alert("Stripe error. Check server.");
-    }
+if (data.url) {
+    window.location.href = data.url;
+} else {
+    console.error("Stripe error:", data);
+    alert("Stripe error: " + (data.error || "Unknown error"));
+}
 });
 
 </script>
