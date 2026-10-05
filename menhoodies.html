@@ -548,7 +548,7 @@ nav li {
 
 <section class="shop-container">
     <div class="shop-item">
-        <img src="images/mh1.png?v=2" alt="Sportswear 1">
+        <img src="images/mh1.png" alt="Sportswear 1">
         <p>ELVT Contrast-Stitched Boxy Fleece Hoodie</p>
          <p>$60</p>
 
@@ -562,7 +562,7 @@ nav li {
     <button onclick="addToCart(
         'ELVT Contrast-Stitched Boxy Fleece Hoodie',
         60,
-        'images/mh1.png?v=2',
+        'images/mh1.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -592,7 +592,7 @@ nav li {
     <button onclick="addToCart(
         'ELVT Contrast-Stitched Boxy Fleece Hoodie',
         60,
-        'images/h3.webp.png',
+        'images/h3.webp',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -885,60 +885,55 @@ menu.querySelectorAll("a").forEach(link => {
 });
 
 
+// ===== ELVT PRODUCT IMAGE SLIDER =====
 document.querySelectorAll('.image-slider').forEach(slider => {
+
     const images = slider.querySelectorAll('img');
     const dots = slider.querySelectorAll('.dot');
 
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            images.forEach(img => img.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
+    if (!images.length) return;
 
-            images[i].classList.add('active');
-            dot.classList.add('active');
-        });
-    });
-});
-
-document.querySelectorAll('.image-slider').forEach(slider => {
-    const images = slider.querySelectorAll('img');
-    const dots = slider.querySelectorAll('.dot');
     let current = 0;
     let interval;
 
     function showImage(index) {
+
+        if (index >= images.length) index = 0;
+        if (index < 0) index = images.length - 1;
+
         images.forEach(img => img.classList.remove('active'));
         dots.forEach(dot => dot.classList.remove('active'));
 
         images[index].classList.add('active');
-        dots[index].classList.add('active');
+
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+
         current = index;
     }
 
     function startSlider() {
-        interval = setInterval(() => {
-            let next = (current + 1) % images.length;
-            showImage(next);
-        }, 3000);
-    }
-
-    function resetSlider() {
         clearInterval(interval);
-        startSlider();
+
+        if (images.length > 1) {
+            interval = setInterval(() => {
+                showImage((current + 1) % images.length);
+            }, 3000);
+        }
     }
 
-    // Dot click
-    dots.forEach((dot, i) => {
+    dots.forEach((dot, index) => {
         dot.addEventListener('click', () => {
-            showImage(i);
-            resetSlider(); // resets the interval cleanly
+            showImage(index);
+            startSlider();
         });
     });
 
-    startSlider(); // start the auto-slide
+    showImage(0);
+    startSlider();
 });
 
-
 </script>
 
 
@@ -969,32 +964,6 @@ window.addToCart = function(name, price, image, item){
 };
 </script>
 
-<script>
-function updateCartBadge(){
-  const badge = document.getElementById("cartBadge");
-  if(!badge) return;
-
-  const cart = JSON.parse(localStorage.getItem("cart")) || [];
-  const totalQty = cart.reduce((sum, item) => sum + (item.qty || 0), 0);
-
-  if(totalQty > 0){
-    badge.style.display = "flex";
-    badge.textContent = totalQty;
-  } else {
-    badge.style.display = "none";
-  }
-}
-
-/* run on load */
-document.addEventListener("DOMContentLoaded", updateCartBadge);
-
-/* update badge whenever user adds to cart */
-const originalAddToCart = window.addToCart;
-window.addToCart = function(name, price, image, item){
-  originalAddToCart(name, price, image, item);
-  updateCartBadge();
-};
-</script>
 
 
 
