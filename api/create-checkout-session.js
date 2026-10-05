@@ -28,7 +28,13 @@ export default async function handler(req, res) {
           currency: "usd",
           product_data: {
             name: item.name,
-            images: item.image ? [item.image] : [],
+           images: item.image
+  ? [
+      item.image.startsWith("http")
+        ? item.image
+        : `https://www.elvtbyadam.com/${item.image.replace(/^\/+/, "")}`
+    ]
+  : [],
             metadata: { size: item.size || "" }
           },
           unit_amount
