@@ -205,51 +205,97 @@ nav a:hover { color:#ff6347; }
   }
 }
 
+/* ===== ELVT PRODUCT IMAGE SLIDER ===== */
+
 .image-slider {
     position: relative;
     width: 100%;
     height: 320px;
     overflow: hidden;
-    border-radius: 12px;
+    border-radius: 12px 12px 0 0;
+    background: #111;
 }
 
+/* All slider images */
 .image-slider img {
     position: absolute;
+    inset: 0;
+
     width: 100%;
     height: 100%;
+
     object-fit: cover;
-    top:0;
-    left:0;
-    opacity:0;
-    transition: opacity 0.3s;
+
+    opacity: 0;
+    visibility: hidden;
+
+    transition:
+        opacity 0.5s ease,
+        visibility 0.5s ease;
+
+    z-index: 1;
 }
 
+/* Image currently showing */
 .image-slider img.active {
-    opacity:1;
+    opacity: 1;
+    visibility: visible;
+    z-index: 2;
 }
+
+/* ===== DOTS ===== */
 
 .image-slider .dots {
     position: absolute;
-    bottom: 8px;
+
+    bottom: 12px;
+    left: 0;
+
     width: 100%;
+
     display: flex;
     justify-content: center;
-    gap: 0.5em;
+    align-items: center;
+
+    gap: 8px;
+
+    z-index: 10;
 }
 
+/* Individual dot */
 .image-slider .dot {
-    width: 10px;
-    height: 10px;
+    width: 9px;
+    height: 9px;
+
     border-radius: 50%;
-    background: #fff;
-    opacity: 0.5;
+
+    background: rgba(255,255,255,0.65);
+
     cursor: pointer;
-    transition: opacity 0.3s;
+
+    transition:
+        transform 0.25s ease,
+        background 0.25s ease,
+        opacity 0.25s ease;
 }
 
+/* Active dot */
 .image-slider .dot.active {
-    opacity: 1;
     background: #ff6347;
+    transform: scale(1.25);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+    .image-slider {
+        height: 360px;
+    }
+
+    .image-slider img {
+        object-fit: cover;
+    }
+
 }
 
 /* Back button */
@@ -547,7 +593,7 @@ nav li {
 
 <section class="shop-container">
     <div class="shop-item">
-        <img src="https://files.tapstitch.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png" alt="Sportswear 1">
+        <img src="images/ts0.png" alt="Sportswear 1">
         <p>ELVT Contrast Piped Panel T-Shirt</p>
     <p>$45</p>
 
@@ -561,7 +607,7 @@ nav li {
     <button onclick="addToCart(
         'ELVT Contrast Piped Panel T-Shirt',
        45,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/6dd43dec896b4eec8c01f57514cac568.png',
+        'images/ts0.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -578,8 +624,8 @@ nav li {
 	
 	<div class="shop-item">
   <div class="image-slider">
-      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/e43ea2647f9a4a879e85cd493f7bd973.png" alt="Front" class="active">
-      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/0f76df95ef0f46fe9463e71be7433d27.png" alt="Back">
+      <img src="images/ts3.png" alt="Front" class="active">
+      <img src="images/ts1.png" alt="Back">
       <div class="dots">
           <span class="dot active"></span>
           <span class="dot"></span>
@@ -599,7 +645,7 @@ nav li {
     <button onclick="addToCart(
         'ELVT Mineral Wash Boxy Cotton T-Shirt ( WE DONT FOLLOW LEVELS WE CREATE THEM )',
         50,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/e43ea2647f9a4a879e85cd493f7bd973.png',
+        'images/ts3.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -615,8 +661,8 @@ nav li {
 	</div> 
 	<div class="shop-item">
   <div class="image-slider">
-      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/5c04b1d2dc97447c9bb1dfcfd9c45ffd.png" alt="Front" class="active">
-      <img src="https://files.tapstitch.com/hugepod/material/custom_printing/9261afcd25a34896844c57d018be5339.png" alt="Back">
+      <img src="images/ts4.png" alt="Front" class="active">
+      <img src="images/ts2.png" alt="Back">
       <div class="dots">
           <span class="dot active"></span>
           <span class="dot"></span>
@@ -636,7 +682,7 @@ nav li {
     <button onclick="addToCart(
         'ELVT Vintage Wash Boxy Distressed Hem T-Shirt ( HIGHER THAN BEFORE )',
         50,
-        'https://files.tapstitch.com/hugepod/material/custom_printing/5c04b1d2dc97447c9bb1dfcfd9c45ffd.png',
+        'images/ts4.png',
         this.closest('.shop-item')
     )" style="
         width:100%;
@@ -862,59 +908,76 @@ menu.querySelectorAll("a").forEach(link => {
 });
 
 
+// ===== ELVT PRODUCT IMAGE SLIDER =====
 document.querySelectorAll('.image-slider').forEach(slider => {
+
     const images = slider.querySelectorAll('img');
     const dots = slider.querySelectorAll('.dot');
 
-    dots.forEach((dot, i) => {
-        dot.addEventListener('click', () => {
-            images.forEach(img => img.classList.remove('active'));
-            dots.forEach(d => d.classList.remove('active'));
+    // Don't run slider if there are no images
+    if (images.length === 0) return;
 
-            images[i].classList.add('active');
-            dot.classList.add('active');
-        });
-    });
-});
-
-document.querySelectorAll('.image-slider').forEach(slider => {
-    const images = slider.querySelectorAll('img');
-    const dots = slider.querySelectorAll('.dot');
     let current = 0;
     let interval;
 
     function showImage(index) {
-        images.forEach(img => img.classList.remove('active'));
-        dots.forEach(dot => dot.classList.remove('active'));
 
+        // Keep index valid
+        if (index >= images.length) index = 0;
+        if (index < 0) index = images.length - 1;
+
+        // Hide all images
+        images.forEach(img => {
+            img.classList.remove('active');
+        });
+
+        // Deactivate all dots
+        dots.forEach(dot => {
+            dot.classList.remove('active');
+        });
+
+        // Show selected image
         images[index].classList.add('active');
-        dots[index].classList.add('active');
+
+        // Activate matching dot
+        if (dots[index]) {
+            dots[index].classList.add('active');
+        }
+
         current = index;
     }
 
     function startSlider() {
-        interval = setInterval(() => {
-            let next = (current + 1) % images.length;
-            showImage(next);
-        }, 3000);
-    }
 
-    function resetSlider() {
+        // Prevent multiple timers
         clearInterval(interval);
-        startSlider();
+
+        // Only auto-slide if there is more than one image
+        if (images.length > 1) {
+            interval = setInterval(() => {
+                const next = (current + 1) % images.length;
+                showImage(next);
+            }, 3000);
+        }
     }
 
-    // Dot click
-    dots.forEach((dot, i) => {
+    // Dot controls
+    dots.forEach((dot, index) => {
+
         dot.addEventListener('click', () => {
-            showImage(i);
-            resetSlider(); // resets the interval cleanly
+            showImage(index);
+            startSlider();
         });
+
     });
 
-    startSlider(); // start the auto-slide
-});
+    // Always start with first image
+    showImage(0);
 
+    // Start automatic rotation
+    startSlider();
+
+});
 
 </script>
 
